@@ -17,8 +17,8 @@ runInfo = p.load(f)
 f.close()
 
 # list what markers make up the fork and frame
-forkMarkers = [21, 23, 27, 29]
-frameMarkers = [22, 24, 25, 26, 28, 30, 31]
+forkMarkers = np.array([21, 23, 27, 29])
+frameMarkers = np.array([22, 24, 25, 26, 28, 30, 31])
 # subtract a one for zero indexing
 forkMarkers -= np.ones_like(forkMarkers)
 frameMarkers -= np.ones_like(frameMarkers)
@@ -32,6 +32,7 @@ for num, run in enumerate(runInfo['run']):
     # if it is a static run...
     if runInfo['condition'][num] == 'static':
         # load the run
+        # xyz is an array that is 3 coordinates x 6000 time steps x 31 markers
         xyz = np.load('../data/npy/' + run + '.npy')
         dim = np.shape(xyz)
         # intialize position vectors for markers on the bodies
@@ -47,7 +48,7 @@ for num, run in enumerate(runInfo['run']):
                 rFork[:, :, mFork] = xyz[:, :, i]
                 mFork += 1
             # build the frame vectors
-            if i in frameMarkers:
+            elif i in frameMarkers:
                 rFrame[:, :, mFrame] = xyz[:, :, i]
                 mFrame += 1
             # else skip the marker
@@ -198,7 +199,7 @@ if np.isnan(forkx.sum()) == True:
                 forkzFixed[:, k] = rn[:, 2]
                 #print "realk", realk
                 #print "Difference in realK and reconstructed k =", (rn[0, 0]-realk)/realk*100
-                #input = raw_input()
+                input = raw_input()
 for i, marker in enumerate(forkMarkers):
     plt.figure(i)
     plt.subplot(311)
