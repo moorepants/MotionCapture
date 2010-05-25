@@ -1,7 +1,7 @@
 import pickle as p
 
 # load runInfo.txt into a dictionary
-f = open('runInfo.txt', 'r')
+f = open('../data/runInfo.txt', 'r')
 # intialize the lists for each item in runInfo
 run = rider = bike = condition = speed = gear = []
 run = [line[:-1].split(',')[0] for line in f]
@@ -17,20 +17,20 @@ f.seek(0)
 gear = [line[:-1].split(',')[5] for line in f]
 f.close()
 
-f = open('sensorlocation.txt', 'r')
+f = open('../data/sensorlocation.txt', 'r')
 num = [line[:2].strip() for line in f]
 f.seek(0)
 name = [line[2:-1].strip() for line in f]
 f.close()
 markLoc = {'num': num, 'name': name}
-f = open('markLoc.p', 'w')
+f = open('../data/markLoc.p', 'w')
 p.dump(markLoc, f)
 f.close()
 # define a dictionary of lists for each item in run info
 runInfo = {run[0]: run[1:], rider[0]: rider[1:], bike[0]: bike[1:], gear[0]:
         gear[1:], speed[0]:speed[1:], condition[0]: condition[1:]}
 
-f = open('runInfo.p', 'w')
+f = open('../data/runInfo.p', 'w')
 
 p.dump(runInfo, f)
 

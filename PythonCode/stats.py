@@ -22,7 +22,7 @@ def findall(L, value):
 
 
 # load the run information file
-f = open('runInfo.p', 'r')
+f = open('../data/runInfo.p', 'r')
 runInfo = p.load(f)
 f.close()
 
@@ -71,7 +71,7 @@ for j, speed in enumerate(v):
         if t1 and t2  and t3 and t4 and t5:
             print 'Run number =', run, 'at speed', runInfo['speed'][runIndex], "and it's condition", runInfo['condition'][runIndex]
             # load the state data: q(states, time)
-            q = np.load('npy/' + run + 'q.npy')
+            q = np.load('../data/npy/' + run + 'q.npy')
             # if it is the first match for this speed
             if matchNum == 0:
                 # add q as the first columns in qv
@@ -148,7 +148,7 @@ for i, name in enumerate(qName):
         plt.ylabel('Angle [deg]')
     plt.ylim(figSize[qI])
     plt.title(st.capwords(qName[qI]))
-    plt.savefig('plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'Nb.pdf')
+    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'Nb.pdf')
 
     fig = plt.figure(i+14)#, figsize=(5, 4))
     fig.canvas.set_window_title(st.capwords(qName[qI]))
@@ -169,6 +169,6 @@ for i, name in enumerate(qName):
     plt.ylabel('Frequency [hz]')
     #plt.ylim((-90.0, 90.0))
     plt.title(st.capwords(qName[qI]) + ' Median Frequency')
-    plt.savefig('plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.pdf')
+    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.pdf')
 
     plt.show()

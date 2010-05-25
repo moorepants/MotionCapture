@@ -16,7 +16,7 @@ import numpy as np
 import scipy.io.matlab.mio as mio
 
 # make a list of the folder contents
-dirs, subdirs, filenames = list(os.walk('.'))[0]
+dirs, subdirs, filenames = list(os.walk('../data/mat'))[0]
 
 # remove all files from the list except the 1000, 2000 and 3000 .mat files
 for name in filenames[:]:
@@ -34,12 +34,12 @@ for item in notes:
     runInfo[item] = []
     firstLine = firstLine + item + ','
 firstLine = firstLine[0:-1] + '\n'
-f = open('runInfo.txt', 'w')
+f = open('../data/runInfo.txt', 'w')
 f.write(firstLine)
 f.close()
 
 # open runInfo.txt for appending
-f = open('runInfo.txt', 'a')
+f = open('../data/runInfo.txt', 'a')
 
 # make a numpy file for every matlab file
 for name in filenames[:]:
@@ -85,8 +85,8 @@ for name in filenames[:]:
     xyz = np.array([x, y, z])
     xyzs = np.array([xs, ys, zs])
     # save the array as a binary numpy file
-    np.save('npy/' + name[0:-4] + '.npy', xyz)
-    np.save('npy/' + name[0:-4] + 's.npy', xyzs)
+    np.save('../data/npy/' + name[0:-4] + '.npy', xyz)
+    np.save('../data/npy/' + name[0:-4] + 's.npy', xyzs)
     # make the next line in the runInfo file and append it to the file
     line = ''
     for item in notes:
@@ -104,16 +104,16 @@ for name in filenames[:]:
 f.close()
 
 # compress the data files into three in tar archives
-jodi = tarfile.open('npy/jodi.tar.gz', "w:gz")
-victor = tarfile.open('npy/victor.tar.gz', "w:gz")
-jason = tarfile.open('npy/jason.tar.gz', "w:gz")
+jodi = tarfile.open('../data/npy/jodi.tar.gz', "w:gz")
+victor = tarfile.open('../data/npy/victor.tar.gz', "w:gz")
+jason = tarfile.open('../data/npy/jason.tar.gz', "w:gz")
 for name in filenames[:]:
     if re.match('1\d+\.mat', name) != None:
-        jodi.add('npy/' + name[0:-4] + '.npy')
+        jodi.add('../data/npy/' + name[0:-4] + '.npy')
     elif re.match('2\d+\.mat', name) != None:
-        victor.add('npy/' + name[0:-4] + '.npy')
+        victor.add('../data/npy/' + name[0:-4] + '.npy')
     else:
-        jason.add('npy/' + name[0:-4] + '.npy')
+        jason.add('../data/npy/' + name[0:-4] + '.npy')
 jodi.close()
 victor.close()
 jason.close()

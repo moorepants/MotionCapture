@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#q = np.load('npy/2002q.npy')
+#q = np.load('../data/npy/2002q.npy')
 #steer = q[5]
 
 def med_freq_fft(Fs, Data):

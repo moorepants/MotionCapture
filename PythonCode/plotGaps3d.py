@@ -10,7 +10,7 @@ from matplotlib.ticker import FixedLocator, FixedFormatter
 
 # load the sensor names into a dictionary
 # open the marker location file
-f = open('sensorlocation.txt', 'r')
+f = open('../data/sensorlocation.txt', 'r')
 
 # initialize the dictionary
 markDict = {}
