@@ -9,11 +9,11 @@ import matplotlib.pyplot as plt
 import os
 import re
 from scipy.stats import nanmean
-import pickle as p
+import pickle
 
 # load runInfo.p
 f = open('../data/runInfo.p', 'r')
-runInfo = p.load(f)
+runInfo = pickle.load(f)
 f.close()
 
 # list what markers make up the fork and frame
@@ -145,7 +145,7 @@ if np.isnan(forkx.sum()) == True:
                 v = np.zeros((3, 3))
                 # this is the unit vector from point 1 to 2
                 v[0] = (r[com[1]] - r[com[0]])/np.linalg.norm(r[com[1]] - r[com[0]])
-                # this is the unit vecotor from point 1 to 3
+                # this is the unit vector from point 1 to 3
                 va = (r[com[2]] - r[com[0]])/np.linalg.norm(r[com[2]] - r[com[0]])
                 # cross them to get the unit normal vector to the plane made by
                 # points 1, 2, and 3
@@ -160,9 +160,10 @@ if np.isnan(forkx.sum()) == True:
                 b = np.zeros_like(row)
                 c = np.zeros_like(row)
                 for value in badIndex:
-                    a[value] = np.dot(r[value], v[0])
-                    b[value] = np.dot(r[value], v[1])
-                    c[value] = np.dot(r[value], v[2])
+                    p = r[value] - r[com[0]]
+                    a[value] = np.dot(p, v[0])
+                    b[value] = np.dot(p, v[1])
+                    c[value] = np.dot(p, v[2])
                 print "This is a:", a, "and its shape", np.shape(a)
                 print "This is b:", b, "and its shape", np.shape(b)
                 print "This is c:", c, "and its shape", np.shape(c)
@@ -187,10 +188,10 @@ if np.isnan(forkx.sum()) == True:
                 vn[2] = vn[2]/np.linalg.norm(vn[2])
                 print "static v =\n", v
                 print "v at k:\n", vn
-                print "This percent error in v_k and v_k-1:\n", (vn-v)/v*100
+                print "This percent error in v_k and v_k-1:\n", (vn-v)
                 # reconstruct the missing markers
                 for i in badIndex:
-                    rn[i] = a[i]*vn[0] + b[i]*vn[1] + c[i]*vn[2]
+                    rn[i] = rn[com[0]] + a[i]*vn[0] + b[i]*vn[1] + c[i]*vn[2]
                     print "Reconstructed vector at k =", rn[i]
                     print "Previous vector at k-1 =", rp[i]
                     print "The percent difference =", (rn[i]-rp[i])/rp[i]*100
@@ -199,7 +200,7 @@ if np.isnan(forkx.sum()) == True:
                 forkzFixed[:, k] = rn[:, 2]
                 #print "realk", realk
                 #print "Difference in realK and reconstructed k =", (rn[0, 0]-realk)/realk*100
-                input = raw_input()
+                #input = raw_input()
 for i, marker in enumerate(forkMarkers):
     plt.figure(i)
     plt.subplot(311)
