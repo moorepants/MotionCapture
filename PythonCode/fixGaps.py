@@ -57,7 +57,7 @@ for num, run in enumerate(runInfo['run']):
         rMeanFork[run] = np.transpose(nanmean(rFork, axis=1))/1000.
         rMeanFrame[run] = np.transpose(nanmean(rFrame, axis=1))/1000.
 # load a run and split it into three 2D arrays
-xyz = np.load('../data/npy/2057.npy')
+xyz = np.load('../data/npy/2064.npy')
 x = xyz[0, :, :]
 y = xyz[1, :, :]
 z = xyz[2, :, :]
