@@ -1,3 +1,7 @@
+'''
+Pickles the runInfo.txt file
+
+'''
 import pickle as p
 
 # load runInfo.txt into a dictionary

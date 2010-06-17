@@ -1,3 +1,7 @@
+'''
+Returns the median frequency of a data vector
+
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 

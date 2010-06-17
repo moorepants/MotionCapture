@@ -148,7 +148,7 @@ for i, name in enumerate(qName):
         plt.ylabel('Angle [deg]')
     plt.ylim(figSize[qI])
     plt.title(st.capwords(qName[qI]))
-    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'Nb.pdf')
+    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'Nb.png')
 
     fig = plt.figure(i+14)#, figsize=(5, 4))
     fig.canvas.set_window_title(st.capwords(qName[qI]))
@@ -169,6 +169,6 @@ for i, name in enumerate(qName):
     plt.ylabel('Frequency [hz]')
     #plt.ylim((-90.0, 90.0))
     plt.title(st.capwords(qName[qI]) + ' Median Frequency')
-    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.pdf')
+    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.png')
 
     plt.show()

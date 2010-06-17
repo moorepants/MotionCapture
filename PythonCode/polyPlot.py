@@ -1,3 +1,7 @@
+'''
+Tests making 2d polygons in 3d graphs
+
+'''
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.collections import PolyCollection
 from matplotlib.colors import colorConverter

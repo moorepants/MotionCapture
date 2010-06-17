@@ -1,3 +1,7 @@
+'''
+Finds lateral motion of a bicyclist for Tom Bertulis
+
+'''
 import scipy as sp
 import numpy as np
 import scipy.io.matlab.mio as mio

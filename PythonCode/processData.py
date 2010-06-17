@@ -1,3 +1,7 @@
+'''
+Prints some max and min values of states
+
+'''
 import scipy as sp
 import numpy as np
 import scipy.io.matlab.mio as mio

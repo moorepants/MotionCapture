@@ -1,3 +1,7 @@
+'''
+Finds runs that have large gaps.
+
+'''
 import os
 import re
 import scipy.io.matlab.mio as mio
