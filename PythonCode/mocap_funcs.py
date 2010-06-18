@@ -1,5 +1,6 @@
 from numpy import shape, arange, linspace, abs
 from numpy.fft import fft, fftfreq
+from scipy.integrate import trapz, cumtrapz
 '''
 Functions for bicycle motion capture analysis.
 
@@ -64,27 +65,54 @@ def freq_spectrum(Fs, Data):
     # calculate the closest power of 2 for the length of the data
     n = nextpow2(L)
     print 'n =', n
-    Y = fft(Data, n)
+    Y = fft(Data, n) # /L??
     print 'Y =', Y, shape(Y), type(Y)
     f = fftfreq(n, d=T)
     #f = Fs/2.*linspace(0, 1, n)
     print f, shape(f), type(f)
     freq = f[1:n/2]
-    amp = abs(Y[1:n/2])
+    amp = abs(Y[1:n/2]) # mulitply by 2??
     power = abs(Y[1:n/2])**2
     return freq, amp, power
 
-def medfreq(f, Y):
+def curve_area_stats(x, y):
     '''
-    Returns the median frequency
+    Return the box plot stats of a curve based on area.
+
+    Parameters:
+    -----------
+    x : ndarray
+        The x values
+    y : ndarray
+        The y values
+
+    Returns:
+    --------
+    median :
+        The x value corresponding to 0.5*area
+    lq : lower quartile
+    uq : upper quartile
 
     '''
-    aTot = 0
-    for i in range(len(Y) - 1):
-        aTot += Y[i]*(f[i+1] - f[i])
-    a = 0
-    for i in range(len(Y) - 1):
-        a += Y[i]*(f[i+1] - f[i])
-        if a > aTot/2.:
-            break
-    return f[i]
+    area = trapz(y, x=x)
+    percents = [0.02*area, 0.25*area, 0.5*area, 0.75*area, 0.98*area]
+    CumArea = cumtrapz(y, x=x)
+    flags = [False for flag in range(5)]
+    xstats = []
+    for i, val in enumerate(CumArea):
+        if val > percents[0] and flags[0] == False:
+            xstats.append(i)
+            flags[0] = True
+        elif val > percents[1] and flags[1] == False:
+            xstats.append(i)
+            flags[1] = True
+        elif val > percents[2] and flags[2] == False:
+            xstats.append(i)
+            flags[2] = True
+        elif val > percents[3] and flags[3] == False:
+            xstats.append(i)
+            flags[3] = True
+        elif val > percents[4] and flags[4] == False:
+            xstats.append(i)
+            flags[4] = True
+    return x[xstats]
