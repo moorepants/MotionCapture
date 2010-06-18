@@ -1,5 +1,5 @@
-from numpy import shape, arange, linspace
-from numpy.fft import fft
+from numpy import shape, arange, linspace, abs
+from numpy.fft import fft, fftfreq
 '''
 Functions for bicycle motion capture analysis.
 
@@ -49,26 +49,30 @@ def freq_spectrum(Fs, Data):
 
     '''
     def nextpow2(i):
+        '''
+        Return the next power of 2 for the given number.
+
+        '''
         n = 2
         while n < i: n *= 2
         return n
 
-    #Fs = 100
-    T = 1./Fs
+    T = 1./Fs # sample time
     print 'T =', T
-    L = shape(Data)[0]
+    L = shape(Data)[0] # length of the data
     print 'L =', L
-    t = arange(L)*T
-    print 't =', t
-    NFFT = nextpow2(L)
-    print 'NFFT =', NFFT
-    Y = fft(Data, NFFT)/L
+    # calculate the closest power of 2 for the length of the data
+    n = nextpow2(L)
+    print 'n =', n
+    Y = fft(Data, n)
     print 'Y =', Y, shape(Y), type(Y)
-    f = Fs/2.*linspace(0, 1, NFFT)
+    f = fftfreq(n, d=T)
+    #f = Fs/2.*linspace(0, 1, n)
     print f, shape(f), type(f)
-    freq = f[1:NFFT/2 + 1]
-    amp = 2*abs(Y[1:NFFT/2 + 1])
-    return freq, amp
+    freq = f[1:n/2]
+    amp = abs(Y[1:n/2])
+    power = abs(Y[1:n/2])**2
+    return freq, amp, power
 
 def medfreq(f, Y):
     '''
