@@ -6,20 +6,7 @@ from pylab import errorbar
 import freqAnal as fa
 import string as st
 
-def uniquify(seq):
-    # Not order preserving
-    keys = {}
-    for e in seq:
-        keys[e] = 1
-    return keys.keys()
-
-def findall(L, value):
-    a = []
-    for i in range(len(L)):
-        if L[i] == value:
-            a.append(i)
-    return a
-
+from mocap_funcs import uniquify, findall
 
 # load the run information file
 f = open('../data/runInfo.p', 'r')
@@ -39,14 +26,15 @@ qUnit = ['l', 'l', 'a', 'a', 'a', 'a', 'l', 'l', 'a', 'l', 'l', 'l','a', 'a']
 # set to a single run for testing
 #runInfo['run'] = ['2002']
 
+
 # make a sorted list of the unique speeds
 v = uniquify(runInfo['speed'])
+v.sort()
 v.remove('0')
 v.remove('12')
 v.remove('14')
 v.remove('18')
 v.remove('16')
-v.sort()
 
 # intialize variables
 qBar = np.zeros((68, len(qName)))
@@ -109,10 +97,8 @@ for j, speed in enumerate(v):
 figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
         (-75., 75.), (-1., 1.), (0., 0.5), (0., -0.5), (0.0, 0.5), (-0.5, 0.), (-0.05,
         0.05), (-1, 1), (-2, 2)]
-vInt = []
 # make the speeds into integers for proper sorting
-for i, k in enumerate(v):
-    vInt.append(int(k))
+vInt = [int(speed) for speed in v]
 vInt.sort()
 for i, name in enumerate(qName):
     qI = qName.index(name)
