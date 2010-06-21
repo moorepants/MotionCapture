@@ -65,7 +65,7 @@ def freq_spectrum(Fs, Data):
     # calculate the closest power of 2 for the length of the data
     n = nextpow2(L)
     print 'n =', n
-    Y = fft(Data, n) # /L??
+    Y = fft(Data, n) # the matlab thing divides this by L
     print 'Y =', Y, shape(Y), type(Y)
     f = fftfreq(n, d=T)
     #f = Fs/2.*linspace(0, 1, n)
