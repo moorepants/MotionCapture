@@ -80,20 +80,20 @@ def freq_spectrum(Fs, Data):
         return n
 
     T = 1./Fs # sample time
-    print 'T =', T
+    #print 'T =', T
     try:
         L = Data.shape[1] # length of Data if (n, m)
     except:
         L = Data.shape[0] # length of Data if (n,)
-    print 'L =', L
+    #print 'L =', L
     # calculate the closest power of 2 for the length of the data
     n = nextpow2(L)
-    print 'n =', n
+    #print 'n =', n
     Y = fft(Data, n) # the matlab thing divides this by L
-    print 'Y =', Y, Y.shape, type(Y)
+    #print 'Y =', Y, Y.shape, type(Y)
     f = fftfreq(n, d=T)
     #f = Fs/2.*linspace(0, 1, n)
-    print 'f =', f, f.shape, type(f)
+    #print 'f =', f, f.shape, type(f)
     freq = f[1:n/2]
     try:
         amp = abs(Y[:, 1:n/2]).T # mulitply by 2??

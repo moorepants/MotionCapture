@@ -8,6 +8,7 @@ runInfo = pickle.load(f)
 f.close()
 
 for run in runInfo['run']:
+    q = load('../data/npy/' + run + 'q.npy')
     l = q.shape[1]
     t = linspace(0, l/100, num=l)
     qd = derivative(t, q)
@@ -16,6 +17,6 @@ for run in runInfo['run']:
     qF, qA = freq_spectrum(100, q)
     qdF, qdA = freq_spectrum(100, qd)
     qddF, qddA = freq_spectrum(100, qdd)
-    savez('../data/npy/' + run + 'q.npz', q=q, qd=qd, qdd=qdd, qF=qF, qA=qA,
+    savez('../data/npy/states/' + run + 'q.npz', q=q, qd=qd, qdd=qdd, qF=qF, qA=qA,
             qdF=qdF, qdA=qdA, qddF=qddF, qddA=qddA)
     print run, 'is saved'

@@ -63,10 +63,6 @@ for j, speed in enumerate(v):
             q = np.load('../data/npy/' + run + 'q.npy')
             qd = np.load('../data/npy/' + run + 'qd.npy')
             qdd = np.load('../data/npy/' + run + 'qdd.npy')
-            # calculate the frequency spectrums of each data set
-            qFreq, qAmp = freq_spectrum(100, q)
-            qdFreq, qdAmp = freq_spectrum(100, qd)
-            qddFreq, qddAmp = freq_spectrum(100, qdd)
 
             # if it is the first match for this speed
             if matchNum == 0:

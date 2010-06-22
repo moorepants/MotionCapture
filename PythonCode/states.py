@@ -13,12 +13,12 @@ def uvec(x):
     return u
 
 # load the run information file
-f = open('runInfo.p', 'r')
+f = open('../data/runInfo.p', 'r')
 runInfo = p.load(f)
 f.close()
 
 # load the orignal marker location list
-f = open('markLoc.p', 'r')
+f = open('../data/markLoc.p', 'r')
 markLoc = p.load(f)
 f.close()
 
@@ -46,7 +46,7 @@ for num, name in enumerate(newMark):
 for i, run in enumerate(runInfo['run']):
     if int(run) >= 1000:
         # load the data (axis, time, marker)
-        mdat = np.load('npy/' + run + 's.npy')
+        mdat = np.load('../data/npy/' + run + 's.npy')
         #print np.isnan(np.sum(mdat)), ", there are some NANS!"
         # create the time vector
         tSteps = mdat.shape[1]
@@ -202,7 +202,7 @@ for i, run in enumerate(runInfo['run']):
             #for marker in range(13):
                 #print 'q[' + str(marker) + ', j] =', q[marker, j]
             #input = raw_input()
-        np.save('npy/' + run + 'q.npy', q)
+        np.save('../data/npy/' + run + 'q.npy', q)
         print 'Finished run', run
     else: pass
 '''
