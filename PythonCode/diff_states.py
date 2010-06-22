@@ -16,4 +16,8 @@ for run in runInfo['run']:
     save('../data/npy/' + run + 'qd.npy', qd)
     qdd = derivative(t[:-1], qd)
     save('../data/npy/' + run + 'qdd.npy', qdd)
+    # calculate the frequency spectrums of each data set
+    qFreq, qAmp = freq_spectrum(100, q)
+    qdFreq, qdAmp = freq_spectrum(100, qd)
+    qddFreq, qddAmp = freq_spectrum(100, qdd)
     print run, 'is saved'

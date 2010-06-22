@@ -57,7 +57,7 @@ def freq_spectrum(Fs, Data):
 
     Fs : int
         sampling frequency
-    Data : ndarray, shape (n, m)
+    Data : ndarray, shape (n,m)
         the time history vector
         n is the number of variables
         m is the number of time steps
@@ -65,8 +65,9 @@ def freq_spectrum(Fs, Data):
     Returns:
     --------
 
-    freq : 
-    amp : 
+    freq : ndarray, shape (p,)
+        the frequencies
+    amp : ndarray, shape (p,n)
 
     '''
     def nextpow2(i):
@@ -95,11 +96,11 @@ def freq_spectrum(Fs, Data):
     print 'f =', f, f.shape, type(f)
     freq = f[1:n/2]
     try:
-        amp = abs(Y[:, 1:n/2]) # mulitply by 2??
-        power = abs(Y[:, 1:n/2])**2
+        amp = abs(Y[:, 1:n/2]).T # mulitply by 2??
+        #power = abs(Y[:, 1:n/2])**2
     except:
         amp = abs(Y[1:n/2]) # mulitply by 2??
-        power = abs(Y[1:n/2])**2
+        #power = abs(Y[1:n/2])**2
     return freq, amp
 
 def curve_area_stats(x, y):
