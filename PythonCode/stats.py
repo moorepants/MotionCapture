@@ -6,7 +6,7 @@ from pylab import errorbar
 import freqAnal as fa
 import string as st
 
-from mocap_funcs import uniquify, findall
+from mocap_funcs import uniquify, findall, freq_spectrum
 
 # load the run information file
 f = open('../data/runInfo.p', 'r')
@@ -38,29 +38,36 @@ v.remove('18')
 v.remove('16')
 
 # intialize variables
-qBar = np.zeros((68, len(qName)))
-sigmaq = np.zeros_like(qBar)
-runNum = 0
+#qBar = np.zeros((68, len(qName)))
+#sigmaq = np.zeros_like(qBar)
+#runNum = 0
 qvd = {}
 mfvd = {}
 # for each unique speed
 for j, speed in enumerate(v):
-    matchNum = 0
+    matchNum = 0 # start of with zero matches
     # findall all the runs with this speed
     vIndexes = findall(runInfo['speed'], speed)
     for i, runIndex in enumerate(vIndexes):
         run = runInfo['run'][runIndex]
         print 'Run number', run
         # only do calculations for certain runs
-        t1 = True #run[0] != '1' # not Jodi's corrupt data
+        t1 = run[0] != '1' # don't include Jodi's corrupt data
         t2 = run[1:4] != '001' and run[1:4] != '051' # not static measurements
         t3 = runInfo['condition'][runIndex] == 'normal biking'
-        t4 = True #runInfo['bike'][runIndex] == 'stratos'
+        t4 = True #runInfo['bike'][runIndex] == 'stratos' # exclude certain bikes
         t5 = True #runInfo['rider'][runIndex] == 'Jason'
-        if t1 and t2  and t3 and t4 and t5:
+        if t1 and t2  and t3 and t4 and t5: # add the run in if all of the t's are true
             print 'Run number =', run, 'at speed', runInfo['speed'][runIndex], "and it's condition", runInfo['condition'][runIndex]
             # load the state data: q(states, time)
             q = np.load('../data/npy/' + run + 'q.npy')
+            qd = np.load('../data/npy/' + run + 'qd.npy')
+            qdd = np.load('../data/npy/' + run + 'qdd.npy')
+            # calculate the frequency spectrums of each data set
+            qFreq, qAmp = freq_spectrum(100, q)
+            qdFreq, qdAmp = freq_spectrum(100, qd)
+            qddFreq, qddAmp = freq_spectrum(100, qdd)
+
             # if it is the first match for this speed
             if matchNum == 0:
                 # add q as the first columns in qv

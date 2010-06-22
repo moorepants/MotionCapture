@@ -55,8 +55,12 @@ def freq_spectrum(Fs, Data):
     Parameters:
     -----------
 
-    Fs : sampling frequency
-    Data : the time history vector
+    Fs : int
+        sampling frequency
+    Data : ndarray, shape (n, m)
+        the time history vector
+        n is the number of variables
+        m is the number of time steps
 
     Returns:
     --------
@@ -76,20 +80,27 @@ def freq_spectrum(Fs, Data):
 
     T = 1./Fs # sample time
     print 'T =', T
-    L = shape(Data)[0] # length of the data
+    try:
+        L = Data.shape[1] # length of Data if (n, m)
+    except:
+        L = Data.shape[0] # length of Data if (n,)
     print 'L =', L
     # calculate the closest power of 2 for the length of the data
     n = nextpow2(L)
     print 'n =', n
     Y = fft(Data, n) # the matlab thing divides this by L
-    print 'Y =', Y, shape(Y), type(Y)
+    print 'Y =', Y, Y.shape, type(Y)
     f = fftfreq(n, d=T)
     #f = Fs/2.*linspace(0, 1, n)
-    print f, shape(f), type(f)
+    print 'f =', f, f.shape, type(f)
     freq = f[1:n/2]
-    amp = abs(Y[1:n/2]) # mulitply by 2??
-    power = abs(Y[1:n/2])**2
-    return freq, amp, power
+    try:
+        amp = abs(Y[:, 1:n/2]) # mulitply by 2??
+        power = abs(Y[:, 1:n/2])**2
+    except:
+        amp = abs(Y[1:n/2]) # mulitply by 2??
+        power = abs(Y[1:n/2])**2
+    return freq, amp
 
 def curve_area_stats(x, y):
     '''
