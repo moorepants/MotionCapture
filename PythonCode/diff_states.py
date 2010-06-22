@@ -1,5 +1,5 @@
 from mocap_funcs import derivative, freq_spectrum
-from numpy import load, linspace, save, savez
+from numpy import load, linspace, savez
 import pickle
 
 # load the run information file

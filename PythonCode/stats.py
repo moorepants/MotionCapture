@@ -60,14 +60,11 @@ for j, speed in enumerate(v):
         if t1 and t2  and t3 and t4 and t5: # add the run in if all of the t's are true
             print 'Run number =', run, 'at speed', runInfo['speed'][runIndex], "and it's condition", runInfo['condition'][runIndex]
             # load the state data: q(states, time)
-            q = np.load('../data/npy/' + run + 'q.npy')
-            qd = np.load('../data/npy/' + run + 'qd.npy')
-            qdd = np.load('../data/npy/' + run + 'qdd.npy')
-
+            qData = np.load('../data/npy/states/' + run + 'q.npz')
             # if it is the first match for this speed
             if matchNum == 0:
                 # add q as the first columns in qv
-                qv = q
+                qv = qData['q']
                 # add the median frequencies as the first row in mfv
                 mfv = []
                 for state in q:
