@@ -6,6 +6,19 @@ Functions for bicycle motion capture analysis.
 
 '''
 def derivative(x, y):
+    '''
+    Return the derivative of y wrt to x.
+
+    Parameters:
+    -----------
+    x : ndarray, shape(n,)
+    y : ndarray, shape(n,)
+
+    Returns:
+    --------
+    dydx : ndarray, shape(n-1,)
+
+    '''
     return diff(y)/diff(x)
 
 def uniquify(seq):
