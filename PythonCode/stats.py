@@ -30,6 +30,7 @@ qUnit = ['l', 'l', 'a', 'a', 'a', 'a', 'l', 'l', 'a', 'l', 'l', 'l','a', 'a']
 # make a sorted list of the unique speeds
 v = uniquify(runInfo['speed'])
 v.sort()
+# remove the no hands speeds
 v.remove('0')
 v.remove('12')
 v.remove('14')
@@ -116,10 +117,10 @@ for i, name in enumerate(qName):
     fig.canvas.set_window_title(st.capwords(qName[qI]))
     ax1 = fig.add_subplot(111)
     #plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
-    bp = plt.boxplot(adjSteer, notch=0, sym='+', vert=1, whis=1.5)
+    bp = plt.boxplot(adjSteer, notch=0, sym='', vert=1, whis=1.5)
     plt.setp(bp['boxes'], color='black')
     plt.setp(bp['whiskers'], color='black')
-    plt.setp(bp['fliers'], color='black', marker='+')
+    #plt.setp(bp['fliers'], color='black', marker='+')
     plt.setp(bp['medians'], color='black')
     ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
                           alpha=0.5)
@@ -140,10 +141,10 @@ for i, name in enumerate(qName):
     fig.canvas.set_window_title(st.capwords(qName[qI]))
     ax1 = fig.add_subplot(111)
     #plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
-    bp = plt.boxplot(medFreq, notch=0, sym='+', vert=1, whis=1.5)
+    bp = plt.boxplot(medFreq, notch=0, sym='', vert=1, whis=1.5)
     plt.setp(bp['boxes'], color='black')
     plt.setp(bp['whiskers'], color='black')
-    plt.setp(bp['fliers'], color='black', marker='+')
+    #plt.setp(bp['fliers'], color='black', marker='+')
     plt.setp(bp['medians'], color='black')
     ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
                           alpha=0.5)

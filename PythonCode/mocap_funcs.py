@@ -1,10 +1,13 @@
-from numpy import shape, arange, linspace, abs
+from numpy import shape, arange, linspace, abs, diff
 from numpy.fft import fft, fftfreq
 from scipy.integrate import trapz, cumtrapz
 '''
 Functions for bicycle motion capture analysis.
 
 '''
+def derivative(x, y):
+    return diff(y)/diff(x)
+
 def uniquify(seq):
     # Not order preserving
     keys = {}
