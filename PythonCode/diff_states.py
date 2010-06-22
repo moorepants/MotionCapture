@@ -1,7 +1,6 @@
-from mocap_funcs import derivative
-from numpy import load, linspace, save
+from mocap_funcs import derivative, freq_spectrum
+from numpy import load, linspace, save, savez
 import pickle
-
 
 # load the run information file
 f = open('../data/runInfo.p', 'r')
@@ -9,15 +8,14 @@ runInfo = pickle.load(f)
 f.close()
 
 for run in runInfo['run']:
-    q = load('../data/npy/' + run + 'q.npy')
     l = q.shape[1]
     t = linspace(0, l/100, num=l)
     qd = derivative(t, q)
-    save('../data/npy/' + run + 'qd.npy', qd)
     qdd = derivative(t[:-1], qd)
-    save('../data/npy/' + run + 'qdd.npy', qdd)
     # calculate the frequency spectrums of each data set
-    qFreq, qAmp = freq_spectrum(100, q)
-    qdFreq, qdAmp = freq_spectrum(100, qd)
-    qddFreq, qddAmp = freq_spectrum(100, qdd)
+    qF, qA = freq_spectrum(100, q)
+    qdF, qdA = freq_spectrum(100, qd)
+    qddF, qddA = freq_spectrum(100, qdd)
+    savez('../data/npy/' + run + 'q.npz', q=q, qd=qd, qdd=qdd, qF=qF, qA=qA,
+            qdF=qdF, qdA=qdA, qddF=qddF, qddA=qddA)
     print run, 'is saved'
