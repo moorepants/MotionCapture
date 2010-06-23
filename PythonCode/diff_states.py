@@ -7,6 +7,8 @@ f = open('../data/runInfo.p', 'r')
 runInfo = pickle.load(f)
 f.close()
 
+fstats = {}
+
 for run in runInfo['run']:
     q = load('../data/npy/' + run + 'q.npy')
     l = q.shape[1]
@@ -22,5 +24,5 @@ for run in runInfo['run']:
     fstats['qd'] = curve_area_stats(qdF, qdA)
     fstats['qdd'] = curve_area_stats(qddF, qddA)
     savez('../data/npy/states/' + run + 'q.npz', q=q, qd=qd, qdd=qdd, qF=qF, qA=qA,
-            qdF=qdF, qdA=qdA, qddF=qddF, qddA=qddA)
+            qdF=qdF, qdA=qdA, qddF=qddF, qddA=qddA, fstats=fstats)
     print run, 'is saved'

@@ -31,23 +31,23 @@ qUnit = ['l', 'l', 'a', 'a', 'a', 'a', 'l', 'l', 'a', 'l', 'l', 'l','a', 'a']
 v = uniquify(runInfo['speed'])
 v.sort()
 # remove the no hands speeds
-v.remove('0')
-v.remove('12')
-v.remove('14')
-v.remove('18')
-v.remove('16')
+#v.remove('0')
+#v.remove('12')
+#v.remove('14')
+#v.remove('18')
+#v.remove('16')
 
 # intialize variables
-#qBar = np.zeros((68, len(qName)))
-#sigmaq = np.zeros_like(qBar)
-#runNum = 0
-qvd = {}
-mfvd = {}
+qDict = {}
+qdDict = {}
+qddDict = {}
+nums = {}
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
     # findall all the runs with this speed
     vIndexes = findall(runInfo['speed'], speed)
+    NumInSet = 0
     for i, runIndex in enumerate(vIndexes):
         run = runInfo['run'][runIndex]
         print 'Run number', run
@@ -59,42 +59,35 @@ for j, speed in enumerate(v):
         t5 = True #runInfo['rider'][runIndex] == 'Jason'
         if t1 and t2  and t3 and t4 and t5: # add the run in if all of the t's are true
             print 'Run number =', run, 'at speed', runInfo['speed'][runIndex], "and it's condition", runInfo['condition'][runIndex]
-            # load the state data: q(states, time)
+            NumInSet += 1
+            # load the state data:
             qData = np.load('../data/npy/states/' + run + 'q.npz')
             # if it is the first match for this speed
             if matchNum == 0:
                 # add q as the first columns in qv
-                qv = qData['q']
-                # add the median frequencies as the first row in mfv
-                mfv = []
-                for state in q:
-                    mfv.append(fa.med_freq_fft(100, state))
-                mfv = np.array(mfv)
-                #print 'Shape of mfv', np.shape(mfv)
+                q = qData['q']
+                qd = qData['qd']
+                qdd = qData['qdd']
                 # set matchNum so we know it is no longer the first match
                 matchNum = 1
             # else it is not the first match
             else:
                 # add the current q as a column to qv
-                qv = np.append(qv, q, axis=1)
-                # calculate the current median frequencies
-                mf = []
-                for state in q:
-                    mf.append(fa.med_freq_fft(100, state))
-                mf = np.array(mf)
-                #print 'Shape of mf', np.shape(mf)
-                # add the column of median freqencies to mfv
-                mfv = np.column_stack((mfv, mf))
-                #print 'Shape of mfv', np.shape(mfv)
+                q = np.hstack((q, qData['q']))
+                qd = np.hstack((qd, qData['qd']))
+                qdd = np.hstack((qdd, qData['qdd']))
                 matchNum = 1
             #print 'np.shape(qv) =', np.shape(qv), 'and shape of q =', np.shape(q)
     # file the qv and mfv into a dictionary for that speed
-    try: qv
+    try: q
     except NameError:
         pass
     else:
-        qvd[speed] = qv
-        mfvd[speed] = mfv
+        qDict[speed] = q
+        qdDict[speed] = qd
+        qddDict[speed] = qdd
+        nums[speed] = NumInSet
+stop
 figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
         (-75., 75.), (-1., 1.), (0., 0.5), (0., -0.5), (0.0, 0.5), (-0.5, 0.), (-0.05,
         0.05), (-1, 1), (-2, 2)]
