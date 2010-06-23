@@ -66,7 +66,7 @@ def freq_spectrum(Fs, Data):
     --------
 
     freq : ndarray, shape (p,)
-        the frequencies
+        the frequencies where p a power of 2 close to m
     amp : ndarray, shape (p,n)
 
     '''
@@ -109,38 +109,51 @@ def curve_area_stats(x, y):
 
     Parameters:
     -----------
-    x : ndarray
+    x : ndarray, shape (n,)
         The x values
-    y : ndarray
+    y : ndarray, shape (n,m)
         The y values
+        n are the time steps
+        m are the various curves
 
     Returns:
     --------
-    median :
-        The x value corresponding to 0.5*area
-    lq : lower quartile
-    uq : upper quartile
+    A dictionary containing:
+    median : ndarray, shape (m,)
+        The x value corresponding to 0.5*area under the curve
+    lq : ndarray, shape (m,)
+        lower quartile
+    uq : ndarray, shape (m,)
+        upper quartile
+    98q : ndarray, shape (m,)
+        98th percentile
+    2q : ndarray, shape (m,)
+        2nd percentile
 
     '''
-    area = trapz(y, x=x)
+    area = trapz(y, x=x, axis=0) # shape (m,)
     percents = [0.02*area, 0.25*area, 0.5*area, 0.75*area, 0.98*area]
-    CumArea = cumtrapz(y, x=x)
-    flags = [False for flag in range(5)]
-    xstats = []
-    for i, val in enumerate(CumArea):
-        if val > percents[0] and flags[0] == False:
-            xstats.append(i)
-            flags[0] = True
-        elif val > percents[1] and flags[1] == False:
-            xstats.append(i)
-            flags[1] = True
-        elif val > percents[2] and flags[2] == False:
-            xstats.append(i)
-            flags[2] = True
-        elif val > percents[3] and flags[3] == False:
-            xstats.append(i)
-            flags[3] = True
-        elif val > percents[4] and flags[4] == False:
-            xstats.append(i)
-            flags[4] = True
-    return x[xstats]
+    CumArea = cumtrapz(y.T, x=x.T) # shape(m,n)
+    xstats = {'2q':[], 'lq':[], 'median':[], 'uq':[], '98q':[]}
+    for j, curve in enumerate(CumArea):
+        flags = [False for flag in range(5)]
+        for i, val in enumerate(curve):
+            #print val, type(val), val.shape 
+            #print percents[0], type(percents[0])
+            #print val > percents[0][j]
+            if val > percents[0][j] and flags[0] == False:
+                xstats['2q'].append(x[i])
+                flags[0] = True
+            elif val > percents[1][j] and flags[1] == False:
+                xstats['lq'].append(x[i])
+                flags[1] = True
+            elif val > percents[2][j] and flags[2] == False:
+                xstats['median'].append(x[i])
+                flags[2] = True
+            elif val > percents[3][j] and flags[3] == False:
+                xstats['uq'].append(x[i])
+                flags[3] = True
+            elif val > percents[4][j] and flags[4] == False:
+                xstats['98q'].append(x[i])
+                flags[4] = True
+    return xstats

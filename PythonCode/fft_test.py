@@ -4,14 +4,13 @@ from mocap_funcs import *
 from scipy.integrate import trapz, cumtrapz
 
 q = np.load('../data/npy/2002q.npy')
-steer = q[5]
-f, a = freq_spectrum(100, steer)
+f, a = freq_spectrum(100, q)
 
 plt.figure(1)
 plt.plot(f, a)
 
-area = trapz(a, f)
-cumarea = cumtrapz(a, f)
+area = trapz(a, x=f, axis=0) # area under each curve
+cumarea = cumtrapz(a.T, x=f.T)
 
 areas = [cumarea[0]]
 areas.extend([cumarea[i] - cumarea[i - 1] for i in range(len(cumarea[1:]))])
