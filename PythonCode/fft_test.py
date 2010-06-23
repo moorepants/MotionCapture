@@ -17,7 +17,7 @@ areas.extend([cumarea[i] - cumarea[i - 1] for i in range(len(cumarea[1:]))])
 
 stats = curve_area_stats(f, a)
 
-plt.plot([stats, stats], [np.min(a)*np.ones_like(stats), np.max(a)*np.ones_like(stats)])
+#plt.plot([stats, stats], [np.min(a)*np.ones_like(stats), np.max(a)*np.ones_like(stats)])
 
 sf = 1000
 

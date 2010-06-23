@@ -1,4 +1,4 @@
-from mocap_funcs import derivative, freq_spectrum
+from mocap_funcs import derivative, freq_spectrum, curve_area_stats
 from numpy import load, linspace, savez
 import pickle
 
@@ -17,6 +17,10 @@ for run in runInfo['run']:
     qF, qA = freq_spectrum(100, q)
     qdF, qdA = freq_spectrum(100, qd)
     qddF, qddA = freq_spectrum(100, qdd)
+    # calculate the statistics of the frequency spectrums
+    fstats['q'] = curve_area_stats(qF, qA)
+    fstats['qd'] = curve_area_stats(qdF, qdA)
+    fstats['qdd'] = curve_area_stats(qddF, qddA)
     savez('../data/npy/states/' + run + 'q.npz', q=q, qd=qd, qdd=qdd, qF=qF, qA=qA,
             qdF=qdF, qdA=qdA, qddF=qddF, qddA=qddA)
     print run, 'is saved'

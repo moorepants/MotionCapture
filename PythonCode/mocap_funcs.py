@@ -138,9 +138,6 @@ def curve_area_stats(x, y):
     for j, curve in enumerate(CumArea):
         flags = [False for flag in range(5)]
         for i, val in enumerate(curve):
-            #print val, type(val), val.shape 
-            #print percents[0], type(percents[0])
-            #print val > percents[0][j]
             if val > percents[0][j] and flags[0] == False:
                 xstats['2q'].append(x[i])
                 flags[0] = True
