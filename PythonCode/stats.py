@@ -53,7 +53,7 @@ qddDict = {}
 nums = {}
 stats = {}
 fstats = {}
-condition = 'nohands'
+condition = 'normal biking'
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
@@ -117,34 +117,36 @@ figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
 # make the speeds into integers for proper sorting
 vInt = [int(speed) for speed in nums.keys()]
 vInt.sort()
+lenYlabels = {'q':'Distance [m]', 'qd':'Rate [m/s]', 'qdd':'Acceleration [$m/s^2$]'}
+angYlabels = {'q':'Angel [deg]', 'qd':'Angular Rate [deg/s]', 'qdd':'AngularAcceleration [deg/$s^2$]'}
 # for each of the states
 for i, name in enumerate(qName):
-    qBox = []
-    qdBox = []
-    qddBox = []
+    qBox = {'q':[], 'qd':[], 'qdd':[]}
     for k in vInt:
-            qBox.append(qDict[str(k)][i, :])
-            qdBox.append(qdDict[str(k)][i, :])
-            qddBox.append(qddDict[str(k)][i, :])
-    fig = plt.figure(i)
-    #fig.canvas.set_window_title(st.capwords(qName[i]))
-    ax1 = fig.add_subplot(111)
-    if qUnit[i] == 'len':
-        bp = plt.boxplot(qBox, notch=0, sym='', vert=1, whis=1.5, positions=vInt)
-        plt.ylabel('Distance [m]')
-    elif qUnit[i] == 'ang':
-        bp = plt.boxplot([180./np.pi*s for s in qBox], notch=0, sym='', vert=1, whis=1.5, positions=vInt)
-        plt.ylabel('Angle [deg]')
-    else:
-        print "why isn't there a unit"
-    plt.setp(bp['boxes'], color='black')
-    plt.setp(bp['whiskers'], color='black')
-    plt.setp(bp['medians'], color='black')
-    ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
-                          alpha=0.5)
-    plt.xlabel('Speed [km/h]')
-    plt.title(st.capwords(qName[i]))
-    plt.savefig('../plots/' + camelcase_nospace(condition) + '/' + camelcase_nospace(qName[i]) + '.png')
+            qBox['q'].append(qDict[str(k)][i, :])
+            qBox['qd'].append(qdDict[str(k)][i, :])
+            qBox['qdd'].append(qddDict[str(k)][i, :])
+    for k in qBox.keys():
+        fig = plt.figure()
+        ax1 = fig.add_subplot(111)
+        if qUnit[i] == 'len':
+            bp = plt.boxplot(qBox[k], notch=0, sym='', vert=1, whis=1.5, positions=vInt)
+            plt.ylabel(lenYlabels[k])
+        elif qUnit[i] == 'ang':
+            bp = plt.boxplot([180./np.pi*s for s in qBox[k]], notch=0, sym='', vert=1, whis=1.5, positions=vInt)
+            plt.ylabel(angYlabels[k])
+        else:
+            print "why isn't there a unit"
+        plt.setp(bp['boxes'], color='black')
+        plt.setp(bp['whiskers'], color='black')
+        plt.setp(bp['medians'], color='black')
+        ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
+                              alpha=0.5)
+        plt.xlabel('Speed [km/h]')
+        plt.title(st.capwords(qName[i]))
+        directory = '../plots/' + camelcase_nospace(condition) + '/' + k + '/'
+        plt.savefig(directory + camelcase_nospace(qName[i]) + k + '.png')
+        # now modify the graph such that it read the frequency spectrum
 
     ###fig = plt.figure(i+14)#, figsize=(5, 4))
     ###fig.canvas.set_window_title(st.capwords(qName[qI]))
