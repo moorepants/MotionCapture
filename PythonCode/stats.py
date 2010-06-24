@@ -146,7 +146,27 @@ for i, name in enumerate(qName):
         plt.title(st.capwords(qName[i]))
         directory = '../plots/' + camelcase_nospace(condition) + '/' + k + '/'
         plt.savefig(directory + camelcase_nospace(qName[i]) + k + '.png')
-        # now modify the graph such that it read the frequency spectrum
+        # now modify the graph such that it reads the frequency spectrum
+        for j, sp in enumerate(vInt):
+            bp['boxes'][j].set_ydata(np.array([stats[str(sp)][k][1,
+                i], stats[str(sp)][k][1, i], stats[str(sp)][k][3,
+                    i], stats[str(sp)][k][3, i], stats[str(sp)][k][1, i]]))
+            bp['medians'][j].set_ydata(np.array([stats[str(sp)][k][2, i],
+                stats[str(sp)][k][2, i]]))
+            bp['whiskers'][j].set_ydata(np.array([stats[str(sp)][k][0, i],
+                stats[str(sp)][k][1, i]]))
+            bp['whiskers'][j+9].set_ydata(np.array([stats[str(sp)][k][3, i],
+                stats[str(sp)][k][4, i]]))
+            bp['caps'][j].set_ydata(np.array([stats[str(sp)][k][0, i],
+                stats[str(sp)][k][0, i]]))
+            bp['caps'][j+9].set_ydata(np.array([stats[str(sp)][k][4, i],
+                stats[str(sp)][k][4, i]]))
+        # now fix the titles and labels
+        plt.ylabel('Frequency [Hz]')
+        #plt.axis('normal')
+        plt.savefig(directory + camelcase_nospace(qName[i]) + k + 'freq.png')
+
+
 
     ###fig = plt.figure(i+14)#, figsize=(5, 4))
     ###fig.canvas.set_window_title(st.capwords(qName[qI]))
