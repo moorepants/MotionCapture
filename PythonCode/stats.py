@@ -6,7 +6,7 @@ from pylab import errorbar
 import freqAnal as fa
 import string as st
 
-from mocap_funcs import uniquify, findall, freq_spectrum
+from mocap_funcs import uniquify, findall, freq_spectrum, camelcase_nospace
 
 # load the run information file
 f = open('../data/runInfo.p', 'r')
@@ -44,7 +44,7 @@ qddDict = {}
 nums = {}
 stats = {}
 fstats = {}
-condition = 'normal biking'
+condition = 'towing'
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
@@ -120,7 +120,8 @@ for i, name in enumerate(qName):
     fig.canvas.set_window_title(st.capwords(qName[i]))
     ax1 = fig.add_subplot(111)
     #plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
-    bp = plt.boxplot(adjSteer, notch=0, sym='', vert=1, whis=1.5)
+    bp = plt.boxplot(adjSteer, notch=0, sym='', vert=1, whis=1.5,
+            positions=vInt)
     plt.setp(bp['boxes'], color='black')
     plt.setp(bp['whiskers'], color='black')
     #plt.setp(bp['fliers'], color='black', marker='+')
@@ -130,15 +131,15 @@ for i, name in enumerate(qName):
     labels = [0]
     labels.extend(vInt)
     #plt.yticks(np.linspace(-6, 6, num=13))
-    plt.xticks(np.arange(len(v)+1), tuple(labels))
+    #plt.xticks(np.arange(len(v)+1), tuple(labels))
     plt.xlabel('Speed [km/h]')
     if qUnit[i] == 'l':
         plt.ylabel('Distance [m]')
     elif qUnit[i] == 'a':
         plt.ylabel('Angle [deg]')
-    plt.ylim(figSize[i])
+    #plt.ylim(figSize[i])
     plt.title(st.capwords(qName[i]))
-    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[i])), '') + 'Nb.png')
+    plt.savefig('../plots/' + camelcase_nospace(condition) + '/' + camelcase_nospace(qName[i]) + '.png')
 
     ###fig = plt.figure(i+14)#, figsize=(5, 4))
     ###fig.canvas.set_window_title(st.capwords(qName[qI]))
@@ -161,4 +162,4 @@ for i, name in enumerate(qName):
     ###plt.title(st.capwords(qName[qI]) + ' Median Frequency')
     ###plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.png')
 
-plt.show()
+#plt.show()
