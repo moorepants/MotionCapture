@@ -1,10 +1,18 @@
 from numpy import shape, arange, linspace, abs, diff, array
 from numpy.fft import fft, fftfreq
 from scipy.integrate import trapz, cumtrapz
+from string import capwords, split, join
 '''
 Functions for bicycle motion capture analysis.
 
 '''
+def camelcase_nospace(string):
+    '''
+    Return a string that is camelcase and has no whitespace.
+
+    '''
+    return join(split(capwords(string)), '')
+
 def derivative(x, y):
     '''
     Return the derivative of y wrt to x.

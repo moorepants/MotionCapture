@@ -44,6 +44,7 @@ qddDict = {}
 nums = {}
 stats = {}
 fstats = {}
+condition = 'normal biking'
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
@@ -56,7 +57,7 @@ for j, speed in enumerate(v):
         # only do calculations for certain runs
         t1 = run[0] != '1' # don't include Jodi's corrupt data
         t2 = run[1:4] != '001' and run[1:4] != '051' # not static measurements
-        t3 = runInfo['condition'][runIndex] == 'normal biking'
+        t3 = runInfo['condition'][runIndex] == condition
         t4 = True #runInfo['bike'][runIndex] == 'stratos' # exclude certain bikes
         t5 = True #runInfo['rider'][runIndex] == 'Jason'
         if t1 and t2  and t3 and t4 and t5: # add the run in if all of the t's are true
