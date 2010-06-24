@@ -105,25 +105,18 @@ figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
         (-75., 75.), (-1., 1.), (0., 0.5), (0., -0.5), (0.0, 0.5), (-0.5, 0.), (-0.05,
         0.05), (-1, 1), (-2, 2)]
 # make the speeds into integers for proper sorting
-vInt = [int(speed) for speed in v]
+vInt = [int(speed) for speed in nums.keys()]
 vInt.sort()
 # for each of the states
 for i, name in enumerate(qName):
-    # get the index of the state
-    qI = qName.index(name)
-    print i, qI
     adjSteer = []
-    medFreq = []
     for k in vInt:
-        medFreq.append(mfvd[str(k)][qI, :])
-        #adjSteer.append(180.0/np.pi*qvd[str(k)][qI, :] - np.mean(qvd[str(k)][qI, :]))
-        if qUnit[qI] == 'l':
-            adjSteer.append(qvd[str(k)][qI, :])
-        elif qUnit[qI] == 'a':
-            adjSteer.append(180.0/np.pi*qvd[str(k)][qI, :])
-
+        if qUnit[i] == 'l':
+            adjSteer.append(qDict[str(k)][i, :])
+        elif qUnit[i] == 'a':
+            adjSteer.append(180.0/np.pi*qDict[str(k)][i, :])
     fig = plt.figure(i)#, figsize=(5, 4))
-    fig.canvas.set_window_title(st.capwords(qName[qI]))
+    fig.canvas.set_window_title(st.capwords(qName[i]))
     ax1 = fig.add_subplot(111)
     #plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
     bp = plt.boxplot(adjSteer, notch=0, sym='', vert=1, whis=1.5)
@@ -138,33 +131,33 @@ for i, name in enumerate(qName):
     #plt.yticks(np.linspace(-6, 6, num=13))
     plt.xticks(np.arange(len(v)+1), tuple(labels))
     plt.xlabel('Speed [km/h]')
-    if qUnit[qI] == 'l':
+    if qUnit[i] == 'l':
         plt.ylabel('Distance [m]')
-    elif qUnit[qI] == 'a':
+    elif qUnit[i] == 'a':
         plt.ylabel('Angle [deg]')
-    plt.ylim(figSize[qI])
-    plt.title(st.capwords(qName[qI]))
-    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'Nb.png')
+    plt.ylim(figSize[i])
+    plt.title(st.capwords(qName[i]))
+    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[i])), '') + 'Nb.png')
 
-    fig = plt.figure(i+14)#, figsize=(5, 4))
-    fig.canvas.set_window_title(st.capwords(qName[qI]))
-    ax1 = fig.add_subplot(111)
-    #plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
-    bp = plt.boxplot(medFreq, notch=0, sym='', vert=1, whis=1.5)
-    plt.setp(bp['boxes'], color='black')
-    plt.setp(bp['whiskers'], color='black')
-    #plt.setp(bp['fliers'], color='black', marker='+')
-    plt.setp(bp['medians'], color='black')
-    ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
-                          alpha=0.5)
-    labels = [0]
-    labels.extend(vInt)
-    #plt.yticks(np.linspace(-90, 90, num=13))
-    plt.xticks(np.arange(len(v)+1), tuple(labels))
-    plt.xlabel('Speed [km/h]')
-    plt.ylabel('Frequency [hz]')
-    #plt.ylim((-90.0, 90.0))
-    plt.title(st.capwords(qName[qI]) + ' Median Frequency')
-    plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.png')
+    ###fig = plt.figure(i+14)#, figsize=(5, 4))
+    ###fig.canvas.set_window_title(st.capwords(qName[qI]))
+    ###ax1 = fig.add_subplot(111)
+    ####plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
+    ###bp = plt.boxplot(medFreq, notch=0, sym='', vert=1, whis=1.5)
+    ###plt.setp(bp['boxes'], color='black')
+    ###plt.setp(bp['whiskers'], color='black')
+    ####plt.setp(bp['fliers'], color='black', marker='+')
+    ###plt.setp(bp['medians'], color='black')
+    ###ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
+                          ###alpha=0.5)
+    ###labels = [0]
+    ###labels.extend(vInt)
+    ####plt.yticks(np.linspace(-90, 90, num=13))
+    ###plt.xticks(np.arange(len(v)+1), tuple(labels))
+    ###plt.xlabel('Speed [km/h]')
+    ###plt.ylabel('Frequency [hz]')
+    ####plt.ylim((-90.0, 90.0))
+    ###plt.title(st.capwords(qName[qI]) + ' Median Frequency')
+    ###plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.png')
 
-    plt.show()
+plt.show()
