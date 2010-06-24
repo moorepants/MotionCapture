@@ -133,34 +133,24 @@ def curve_area_stats(x, y):
     '''
     area = trapz(y, x=x, axis=0) # shape (m,)
     percents = array([0.02*area, 0.25*area, 0.5*area, 0.75*area, 0.98*area]) # shape (5,m)
-    print "Shape of percents: ", percents.shape
     CumArea = cumtrapz(y.T, x=x.T) # shape(m,n)
-    print CumArea.shape
     xstats = {'2q':[], 'lq':[], 'median':[], 'uq':[], '98q':[]}
     for j, curve in enumerate(CumArea):
-        print j
-        print curve
         flags = [False for flag in range(5)]
         for i, val in enumerate(curve):
             if val > percents[0][j] and flags[0] == False:
-                print 'got the first'
                 xstats['2q'].append(x[i])
-                print xstats['2q']
                 flags[0] = True
             elif val > percents[1][j] and flags[1] == False:
-                print 'got the second'
                 xstats['lq'].append(x[i])
                 flags[1] = True
             elif val > percents[2][j] and flags[2] == False:
-                print 'got the third'
                 xstats['median'].append(x[i])
                 flags[2] = True
             elif val > percents[3][j] and flags[3] == False:
-                print 'got the fourth'
                 xstats['uq'].append(x[i])
                 flags[3] = True
             elif val > percents[4][j] and flags[4] == False:
-                print 'got the fifth'
                 xstats['98q'].append(x[i])
                 flags[4] = True
         if flags[4] == False:
