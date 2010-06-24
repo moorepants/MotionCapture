@@ -10,7 +10,7 @@ f.close()
 fstats = {}
 
 for run in runInfo['run']:
-    q = load('../data/npy/' + run + 'q.npy')
+    q = load('../data/npy/states/' + run + 'q.npy')
     l = q.shape[1]
     t = linspace(0, l/100, num=l)
     qd = derivative(t, q)

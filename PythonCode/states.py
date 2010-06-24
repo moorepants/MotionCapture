@@ -202,7 +202,7 @@ for i, run in enumerate(runInfo['run']):
             #for marker in range(13):
                 #print 'q[' + str(marker) + ', j] =', q[marker, j]
             #input = raw_input()
-        np.save('../data/npy/' + run + 'q.npy', q)
+        np.save('../data/npy/states/' + run + 'q.npy', q)
         print 'Finished run', run
     else: pass
 '''

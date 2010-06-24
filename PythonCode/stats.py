@@ -42,6 +42,7 @@ qDict = {}
 qdDict = {}
 qddDict = {}
 nums = {}
+stats = {}
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
@@ -68,6 +69,10 @@ for j, speed in enumerate(v):
                 q = qData['q']
                 qd = qData['qd']
                 qdd = qData['qdd']
+                # make a stats matrix with shape (percents, qs)
+                for k, v in qData['fstats'].item().items():
+                    print k
+                    stats[k] = np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))
                 # set matchNum so we know it is no longer the first match
                 matchNum = 1
             # else it is not the first match

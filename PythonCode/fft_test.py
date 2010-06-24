@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from mocap_funcs import *
 from scipy.integrate import trapz, cumtrapz
 
-q = np.load('../data/npy/2002q.npy')
+q = np.load('../data/npy/states/2002q.npy')
 f, a = freq_spectrum(100, q)
 
 plt.figure(1)
