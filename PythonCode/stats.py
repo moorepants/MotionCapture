@@ -101,15 +101,17 @@ for j, speed in enumerate(v):
             except:
                 pass
         stats[speed] = fstats
-stop
 figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
         (-75., 75.), (-1., 1.), (0., 0.5), (0., -0.5), (0.0, 0.5), (-0.5, 0.), (-0.05,
         0.05), (-1, 1), (-2, 2)]
 # make the speeds into integers for proper sorting
 vInt = [int(speed) for speed in v]
 vInt.sort()
+# for each of the states
 for i, name in enumerate(qName):
+    # get the index of the state
     qI = qName.index(name)
+    print i, qI
     adjSteer = []
     medFreq = []
     for k in vInt:
