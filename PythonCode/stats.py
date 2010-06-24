@@ -43,6 +43,7 @@ qdDict = {}
 qddDict = {}
 nums = {}
 stats = {}
+fstats = {}
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
@@ -71,8 +72,8 @@ for j, speed in enumerate(v):
                 qdd = qData['qdd']
                 # make a stats matrix with shape (percents, qs)
                 for k, v in qData['fstats'].item().items():
-                    print k
-                    stats[k] = np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))
+                    # stats is (5,14)
+                    fstats[k] = np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))
                 # set matchNum so we know it is no longer the first match
                 matchNum = 1
             # else it is not the first match
@@ -81,17 +82,25 @@ for j, speed in enumerate(v):
                 q = np.hstack((q, qData['q']))
                 qd = np.hstack((qd, qData['qd']))
                 qdd = np.hstack((qdd, qData['qdd']))
+                for k, v in qData['fstats'].item().items():
+                    # stats is (5,14)
+                    fstats[k] = np.dstack((fstats[k], np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))))
                 matchNum = 1
             #print 'np.shape(qv) =', np.shape(qv), 'and shape of q =', np.shape(q)
-    # file the qv and mfv into a dictionary for that speed
-    try: q
-    except NameError:
+    if NumInSet == 0:
         pass
     else:
         qDict[speed] = q
         qdDict[speed] = qd
         qddDict[speed] = qdd
         nums[speed] = NumInSet
+        # take the average of the computed frequency stats
+        for k, v in fstats.items():
+            try:
+                fstats[k] = np.mean(v, axis=2)
+            except:
+                pass
+        stats[speed] = fstats
 stop
 figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
         (-75., 75.), (-1., 1.), (0., 0.5), (0., -0.5), (0.0, 0.5), (-0.5, 0.), (-0.05,
