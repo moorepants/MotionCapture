@@ -14,14 +14,23 @@ runInfo = p.load(f)
 f.close()
 
 # name the states
-qName = ['distance to rear wheel contact', 'distance to the rear wheel' +
-' contact', 'yaw angle', 'roll angle', 'pitch angle', 'steer angle',
-'distance to front wheel contact', 'distance to front wheel contact',
-'crank rotation', 'right knee lateral distance', 'left knee lateral distance',
-'butt lateral distance', 'lean angle', 'twist angle']
+qName = ['distance to rear wheel contact',
+         'distance to the rear wheel contact',
+         'yaw angle',
+         'roll angle',
+         'pitch angle',
+         'steer angle',
+         'distance to front wheel contact',
+         'distance to front wheel contact',
+         'crank rotation',
+         'right knee lateral distance',
+         'left knee lateral distance',
+         'butt lateral distance',
+         'lean angle',
+         'twist angle']
 
-# name the physical quantity, 'l' = length, 'a' = angle
-qUnit = ['l', 'l', 'a', 'a', 'a', 'a', 'l', 'l', 'a', 'l', 'l', 'l','a', 'a']
+# name the physical quantity, 'len' = length, 'ang' = angle
+qUnit = ['len', 'len', 'ang', 'ang', 'ang', 'ang', 'len', 'len', 'ang', 'len', 'len', 'len','ang', 'ang']
 
 # set to a single run for testing
 #runInfo['run'] = ['2002']
@@ -44,7 +53,7 @@ qddDict = {}
 nums = {}
 stats = {}
 fstats = {}
-condition = 'towing'
+condition = 'nohands'
 # for each unique speed
 for j, speed in enumerate(v):
     matchNum = 0 # start of with zero matches
@@ -110,34 +119,30 @@ vInt = [int(speed) for speed in nums.keys()]
 vInt.sort()
 # for each of the states
 for i, name in enumerate(qName):
-    adjSteer = []
+    qBox = []
+    qdBox = []
+    qddBox = []
     for k in vInt:
-        if qUnit[i] == 'l':
-            adjSteer.append(qDict[str(k)][i, :])
-        elif qUnit[i] == 'a':
-            adjSteer.append(180.0/np.pi*qDict[str(k)][i, :])
-    fig = plt.figure(i)#, figsize=(5, 4))
-    fig.canvas.set_window_title(st.capwords(qName[i]))
+            qBox.append(qDict[str(k)][i, :])
+            qdBox.append(qdDict[str(k)][i, :])
+            qddBox.append(qddDict[str(k)][i, :])
+    fig = plt.figure(i)
+    #fig.canvas.set_window_title(st.capwords(qName[i]))
     ax1 = fig.add_subplot(111)
-    #plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
-    bp = plt.boxplot(adjSteer, notch=0, sym='', vert=1, whis=1.5,
-            positions=vInt)
+    if qUnit[i] == 'len':
+        bp = plt.boxplot(qBox, notch=0, sym='', vert=1, whis=1.5, positions=vInt)
+        plt.ylabel('Distance [m]')
+    elif qUnit[i] == 'ang':
+        bp = plt.boxplot([180./np.pi*s for s in qBox], notch=0, sym='', vert=1, whis=1.5, positions=vInt)
+        plt.ylabel('Angle [deg]')
+    else:
+        print "why isn't there a unit"
     plt.setp(bp['boxes'], color='black')
     plt.setp(bp['whiskers'], color='black')
-    #plt.setp(bp['fliers'], color='black', marker='+')
     plt.setp(bp['medians'], color='black')
     ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
                           alpha=0.5)
-    labels = [0]
-    labels.extend(vInt)
-    #plt.yticks(np.linspace(-6, 6, num=13))
-    #plt.xticks(np.arange(len(v)+1), tuple(labels))
     plt.xlabel('Speed [km/h]')
-    if qUnit[i] == 'l':
-        plt.ylabel('Distance [m]')
-    elif qUnit[i] == 'a':
-        plt.ylabel('Angle [deg]')
-    #plt.ylim(figSize[i])
     plt.title(st.capwords(qName[i]))
     plt.savefig('../plots/' + camelcase_nospace(condition) + '/' + camelcase_nospace(qName[i]) + '.png')
 
