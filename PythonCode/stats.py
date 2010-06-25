@@ -148,10 +148,10 @@ for i, name in enumerate(qName):
             print g
             bp['boxes'][j].set_ydata(np.array([g[1], g[1], g[3], g[3], g[1]]))
             bp['medians'][j].set_ydata(np.array([g[2], g[2]]))
-            #bp['whiskers'][j].set_ydata(np.array([g[0], g[1]]))
-            #bp['whiskers'][j+9].set_ydata(np.array([g[3], g[4]]))
-            #bp['caps'][j].set_ydata(np.array([g[0], g[0]]))
-            #bp['caps'][j+9].set_ydata(np.array([g[4], g[4]]))
+            bp['whiskers'][j*2].set_ydata(np.array([g[0], g[1]]))
+            bp['whiskers'][j*2+1].set_ydata(np.array([g[3], g[4]]))
+            bp['caps'][j*2].set_ydata(np.array([g[0], g[0]]))
+            bp['caps'][j*2+1].set_ydata(np.array([g[4], g[4]]))
         # now fix the titles and labels
         plt.ylabel('Frequency [Hz]')
         #plt.axis('normal')
