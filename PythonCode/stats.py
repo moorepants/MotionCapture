@@ -52,10 +52,10 @@ qdDict = {}
 qddDict = {}
 nums = {}
 stats = {}
-fstats = {}
 condition = 'normal biking'
 # for each unique speed
 for j, speed in enumerate(v):
+    fstats = {}
     matchNum = 0 # start of with zero matches
     # findall all the runs with this speed
     vIndexes = findall(runInfo['speed'], speed)
@@ -80,23 +80,27 @@ for j, speed in enumerate(v):
                 q = qData['q']
                 qd = qData['qd']
                 qdd = qData['qdd']
-                # make a stats matrix with shape (percents, qs)
+                # make a stats matrix with shape (percents, q's)
                 for k, v in qData['fstats'].item().items():
-                    # stats is (5,14)
+                    # fstats[k] is (5,14), k is ['q', 'qd', 'qdd']
                     fstats[k] = np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))
                 # set matchNum so we know it is no longer the first match
                 matchNum = 1
             # else it is not the first match
             else:
-                # add the current q as a column to qv
+                # add the current q as a column to q
                 q = np.hstack((q, qData['q']))
                 qd = np.hstack((qd, qData['qd']))
                 qdd = np.hstack((qdd, qData['qdd']))
                 for k, v in qData['fstats'].item().items():
-                    # stats is (5,14)
                     fstats[k] = np.dstack((fstats[k], np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))))
                 matchNum = 1
-            #print 'np.shape(qv) =', np.shape(qv), 'and shape of q =', np.shape(q)
+    # take the average of the computed frequency stats
+    for k, v in fstats.items():
+        try:
+            fstats[k] = np.mean(v, axis=2)
+        except: # except if there is only one run
+            pass
     if NumInSet == 0:
         pass
     else:
@@ -104,16 +108,7 @@ for j, speed in enumerate(v):
         qdDict[speed] = qd
         qddDict[speed] = qdd
         nums[speed] = NumInSet
-        # take the average of the computed frequency stats
-        for k, v in fstats.items():
-            try:
-                fstats[k] = np.mean(v, axis=2)
-            except:
-                pass
         stats[speed] = fstats
-figSize = [(-1.2, -.4), (-1.2, -0.4), (-30, 30), (-10., 10.), (-100., 100.),
-        (-75., 75.), (-1., 1.), (0., 0.5), (0., -0.5), (0.0, 0.5), (-0.5, 0.), (-0.05,
-        0.05), (-1, 1), (-2, 2)]
 # make the speeds into integers for proper sorting
 vInt = [int(speed) for speed in nums.keys()]
 vInt.sort()
@@ -123,9 +118,9 @@ angYlabels = {'q':'Angel [deg]', 'qd':'Angular Rate [deg/s]', 'qdd':'AngularAcce
 for i, name in enumerate(qName):
     qBox = {'q':[], 'qd':[], 'qdd':[]}
     for k in vInt:
-            qBox['q'].append(qDict[str(k)][i, :])
-            qBox['qd'].append(qdDict[str(k)][i, :])
-            qBox['qdd'].append(qddDict[str(k)][i, :])
+        qBox['q'].append(qDict[str(k)][i, :])
+        qBox['qd'].append(qdDict[str(k)][i, :])
+        qBox['qdd'].append(qddDict[str(k)][i, :])
     for k in qBox.keys():
         fig = plt.figure()
         ax1 = fig.add_subplot(111)
@@ -147,46 +142,18 @@ for i, name in enumerate(qName):
         directory = '../plots/' + camelcase_nospace(condition) + '/' + k + '/'
         plt.savefig(directory + camelcase_nospace(qName[i]) + k + '.png')
         # now modify the graph such that it reads the frequency spectrum
-        for j, sp in enumerate(vInt):
-            bp['boxes'][j].set_ydata(np.array([stats[str(sp)][k][1,
-                i], stats[str(sp)][k][1, i], stats[str(sp)][k][3,
-                    i], stats[str(sp)][k][3, i], stats[str(sp)][k][1, i]]))
-            bp['medians'][j].set_ydata(np.array([stats[str(sp)][k][2, i],
-                stats[str(sp)][k][2, i]]))
-            bp['whiskers'][j].set_ydata(np.array([stats[str(sp)][k][0, i],
-                stats[str(sp)][k][1, i]]))
-            bp['whiskers'][j+9].set_ydata(np.array([stats[str(sp)][k][3, i],
-                stats[str(sp)][k][4, i]]))
-            bp['caps'][j].set_ydata(np.array([stats[str(sp)][k][0, i],
-                stats[str(sp)][k][0, i]]))
-            bp['caps'][j+9].set_ydata(np.array([stats[str(sp)][k][4, i],
-                stats[str(sp)][k][4, i]]))
+        for j, sp in enumerate(vInt): # for each speed in the current graph
+            print sp, k, i
+            g = stats[str(sp)][k][:, i]
+            print g
+            bp['boxes'][j].set_ydata(np.array([g[1], g[1], g[3], g[3], g[1]]))
+            bp['medians'][j].set_ydata(np.array([g[2], g[2]]))
+            #bp['whiskers'][j].set_ydata(np.array([g[0], g[1]]))
+            #bp['whiskers'][j+9].set_ydata(np.array([g[3], g[4]]))
+            #bp['caps'][j].set_ydata(np.array([g[0], g[0]]))
+            #bp['caps'][j+9].set_ydata(np.array([g[4], g[4]]))
         # now fix the titles and labels
         plt.ylabel('Frequency [Hz]')
         #plt.axis('normal')
         plt.savefig(directory + camelcase_nospace(qName[i]) + k + 'freq.png')
-
-
-
-    ###fig = plt.figure(i+14)#, figsize=(5, 4))
-    ###fig.canvas.set_window_title(st.capwords(qName[qI]))
-    ###ax1 = fig.add_subplot(111)
-    ####plt.subplots_adjust(left=0.075, right=0.95, top=0.9, bottom=0.25)
-    ###bp = plt.boxplot(medFreq, notch=0, sym='', vert=1, whis=1.5)
-    ###plt.setp(bp['boxes'], color='black')
-    ###plt.setp(bp['whiskers'], color='black')
-    ####plt.setp(bp['fliers'], color='black', marker='+')
-    ###plt.setp(bp['medians'], color='black')
-    ###ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
-                          ###alpha=0.5)
-    ###labels = [0]
-    ###labels.extend(vInt)
-    ####plt.yticks(np.linspace(-90, 90, num=13))
-    ###plt.xticks(np.arange(len(v)+1), tuple(labels))
-    ###plt.xlabel('Speed [km/h]')
-    ###plt.ylabel('Frequency [hz]')
-    ####plt.ylim((-90.0, 90.0))
-    ###plt.title(st.capwords(qName[qI]) + ' Median Frequency')
-    ###plt.savefig('../plots/' + st.join(st.split(st.capwords(qName[qI])), '') + 'NbMf.png')
-
 #plt.show()
