@@ -43,10 +43,11 @@ f = open('../data/runInfo.txt', 'a')
 
 # make a numpy file for every matlab file
 for name in filenames[:]:
+    print 'Starting', name
     runDict = {'rider':''}
     # load the matlab data file into a dictionary
-    mio.loadmat(name, mdict=runDict)
-    if name[2:4] == '01' or name[2:4] == '51':
+    mio.loadmat('../data/mat/' + name, mdict=runDict)
+    if name[1:4] == '001' or name[1:4] == '051':
         x = runDict['x']
         y = runDict['y']
         z = runDict['z']
@@ -58,9 +59,9 @@ for name in filenames[:]:
         runDict['gear'] = runDict['gearing'] = np.array([[0]])
         runDict['speed'] = runDict['V'] = np.array([[0]])
         runDict['condition'] = np.array([u'static'])
-        if name[2:4] == '01':
+        if name[1:4] == '001':
             runDict['bike'] = np.array([u'stratos'])
-        elif name[2:4] == '51':
+        elif name[1:4] == '051':
             runDict['bike'] = np.array([u'browser'])
     else:
         x = runDict['xori']
@@ -101,6 +102,7 @@ for name in filenames[:]:
         line = line + runInfo[item][-1] + ','
     line = line[0:-1] + '\n'
     f.write(line)
+    print "Saved", name
 f.close()
 
 # compress the data files into three in tar archives

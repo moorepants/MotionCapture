@@ -37,8 +37,8 @@ qUnit = ['len', 'len', 'ang', 'ang', 'ang', 'ang', 'len', 'len', 'ang', 'len', '
 
 
 # make a sorted list of the unique speeds
-v = uniquify(runInfo['speed'])
-v.sort()
+UniqueSpeeds = uniquify(runInfo['speed'])
+UniqueSpeeds.sort()
 # remove the no hands speeds
 #v.remove('0')
 #v.remove('12')
@@ -52,9 +52,9 @@ qdDict = {}
 qddDict = {}
 nums = {}
 stats = {}
-condition = 'normal biking'
+condition = 'nohands'
 # for each unique speed
-for j, speed in enumerate(v):
+for j, speed in enumerate(UniqueSpeeds):
     fstats = {}
     matchNum = 0 # start of with zero matches
     # findall all the runs with this speed
@@ -71,6 +71,8 @@ for j, speed in enumerate(v):
         t5 = True #runInfo['rider'][runIndex] == 'Jason'
         if t1 and t2  and t3 and t4 and t5: # add the run in if all of the t's are true
             print 'Run number =', run, 'at speed', runInfo['speed'][runIndex], "and it's condition", runInfo['condition'][runIndex]
+            if speed == '10':
+                print 'this one is the bad one'
             NumInSet += 1
             # load the state data:
             qData = np.load('../data/npy/states/' + run + 'q.npz')
@@ -143,9 +145,7 @@ for i, name in enumerate(qName):
         plt.savefig(directory + camelcase_nospace(qName[i]) + k + '.png')
         # now modify the graph such that it reads the frequency spectrum
         for j, sp in enumerate(vInt): # for each speed in the current graph
-            print sp, k, i
             g = stats[str(sp)][k][:, i]
-            print g
             bp['boxes'][j].set_ydata(np.array([g[1], g[1], g[3], g[3], g[1]]))
             bp['medians'][j].set_ydata(np.array([g[2], g[2]]))
             bp['whiskers'][j*2].set_ydata(np.array([g[0], g[1]]))
@@ -154,6 +154,6 @@ for i, name in enumerate(qName):
             bp['caps'][j*2+1].set_ydata(np.array([g[4], g[4]]))
         # now fix the titles and labels
         plt.ylabel('Frequency [Hz]')
-        #plt.axis('normal')
+        plt.ylim(0., 50.)
         plt.savefig(directory + camelcase_nospace(qName[i]) + k + 'freq.png')
 #plt.show()
