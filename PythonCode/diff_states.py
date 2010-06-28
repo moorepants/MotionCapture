@@ -17,9 +17,9 @@ for run in runInfo['run']:
     l = q.shape[1]
     t = linspace(0, l/100, num=l)
     qd = derivative(t, q)
-    qd = lfilter(b, a, qd, axis=0)
+    qd = lfilter(b, a, qd)
     qdd = derivative(t[:-1], qd)
-    qdd = lfilter(b, a, qdd, axis=0)
+    qdd = lfilter(b, a, qdd)
     # calculate the frequency spectrums of each data set
     qF, qA = freq_spectrum(100, q)
     qdF, qdA = freq_spectrum(100, qd)
