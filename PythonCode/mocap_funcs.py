@@ -2,10 +2,50 @@ from numpy import shape, arange, linspace, abs, diff, array
 from numpy.fft import fft, fftfreq
 from scipy.integrate import trapz, cumtrapz
 from string import capwords, split, join
+from scipy.signal import butter, lfilter
 '''
 Functions for bicycle motion capture analysis.
 
 '''
+
+def butterworth(data, freq, samprate, order=2, axis=-1):
+    "
+    Returns the Butterworth filtered data set.
+
+    Parameters:
+    -----------
+    data : ndarray
+    freq : float
+        cutoff frequency in hertz
+    samprate : float
+        sampling rate in hertz
+    order : int
+        the order of the Butterworth filter
+    axis : int
+        the axis to filter along
+
+    Returns:
+    --------
+    FilteredData : ndarray
+        filtered version of data
+
+    This does a forward and backward Butterworth filter and averages the two.
+
+    "
+    nDim = len(data.shape)
+    dataSlice = '['
+    for dim in range(nDim):
+        if dim == axis or (axis == -1 and dim == nDim - 1):
+            dataSlice = dataSlice + '::-1, '
+        else:
+            dataSlice = dataSlice + ':, '
+    dataSlice = dataSlice[:-2] + '].copy()'
+
+    b, a = butter(order, freq/samprate/2.)
+    forwardFilter = lfilter(b, a, data, axis=axis)
+    reverseFilter = lfilter(b, a, eval('data' + dataSlice), axis=axis)
+    return(forwardFilter + eval('reverseFilter' + dataSlice))/2.
+
 def camelcase_nospace(string):
     '''
     Return a string that is camelcase and has no whitespace.
