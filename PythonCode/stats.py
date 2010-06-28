@@ -61,6 +61,9 @@ for j, speed in enumerate(UniqueSpeeds):
     vIndexes = findall(runInfo['speed'], speed)
     NumInSet = 0
     for i, runIndex in enumerate(vIndexes):
+        # there is one bad data set for 10 mph, no hands riding
+        if condition == 'nohands' and speed == '10':
+            break
         run = runInfo['run'][runIndex]
         print 'Run number', run
         # only do calculations for certain runs

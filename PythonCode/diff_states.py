@@ -1,5 +1,6 @@
 from mocap_funcs import derivative, freq_spectrum, curve_area_stats
 from numpy import load, linspace, savez
+from scipy.signal import butter, lfilter
 import pickle
 
 # load the run information file
@@ -9,12 +10,16 @@ f.close()
 
 fstats = {}
 
+b, a = butter(2, 10/50) # 10 hz cutoff, 50 hz Nyquist freq
+
 for run in runInfo['run']:
     q = load('../data/npy/states/' + run + 'q.npy')
     l = q.shape[1]
     t = linspace(0, l/100, num=l)
     qd = derivative(t, q)
+    qd = lfilter(b, a, qd, axis=0)
     qdd = derivative(t[:-1], qd)
+    qdd = lfilter(b, a, qdd, axis=0)
     # calculate the frequency spectrums of each data set
     qF, qA = freq_spectrum(100, q)
     qdF, qdA = freq_spectrum(100, qd)
