@@ -9,7 +9,7 @@ Functions for bicycle motion capture analysis.
 '''
 
 def butterworth(data, freq, samprate, order=2, axis=-1):
-    "
+    """
     Returns the Butterworth filtered data set.
 
     Parameters:
@@ -31,7 +31,7 @@ def butterworth(data, freq, samprate, order=2, axis=-1):
 
     This does a forward and backward Butterworth filter and averages the two.
 
-    "
+    """
     nDim = len(data.shape)
     dataSlice = '['
     for dim in range(nDim):
