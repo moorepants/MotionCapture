@@ -1,4 +1,4 @@
-from numpy import shape, arange, linspace, abs, diff, array
+from numpy import shape, arange, linspace, abs, diff, array, sign
 from numpy.fft import fft, fftfreq
 from scipy.integrate import trapz, cumtrapz
 from string import capwords, split, join
@@ -35,7 +35,7 @@ def butterworth(data, freq, samprate, order=2, axis=-1):
     nDim = len(data.shape)
     dataSlice = '['
     for dim in range(nDim):
-        if dim == axis or (axis == -1 and dim == nDim - 1):
+        if dim == axis or (sign(axis) == -1 and dim == nDim + axis):
             dataSlice = dataSlice + '::-1, '
         else:
             dataSlice = dataSlice + ':, '
