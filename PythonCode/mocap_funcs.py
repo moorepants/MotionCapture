@@ -198,16 +198,16 @@ def curve_area_stats(x, y):
         lower quartile
     uq : ndarray, shape (m,)
         upper quartile
-    98q : ndarray, shape (m,)
+    98p : ndarray, shape (m,)
         98th percentile
-    2q : ndarray, shape (m,)
+    2p : ndarray, shape (m,)
         2nd percentile
 
     '''
     area = trapz(y, x=x, axis=0) # shape (m,)
     percents = array([0.02*area, 0.25*area, 0.5*area, 0.75*area, 0.98*area]) # shape (5,m)
     CumArea = cumtrapz(y.T, x=x.T) # shape(m,n)
-    xstats = {'2q':[], 'lq':[], 'median':[], 'uq':[], '98q':[]}
+    xstats = {'2p':[], 'lq':[], 'median':[], 'uq':[], '98p':[]}
     for j, curve in enumerate(CumArea):
         flags = [False for flag in range(5)]
         for i, val in enumerate(curve):
@@ -228,11 +228,11 @@ def curve_area_stats(x, y):
                 flags[4] = True
         if flags[4] == False:
             # this is what happens if it finds none of the above
-            xstats['2q'].append(0.)
+            xstats['2p'].append(0.)
             xstats['lq'].append(0.)
             xstats['median'].append(0.)
             xstats['uq'].append(0.)
-            xstats['98q'].append(0.)
+            xstats['98p'].append(0.)
     for k, v in xstats.items():
         xstats[k] = array(v)
     return xstats
