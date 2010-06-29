@@ -14,20 +14,20 @@ runInfo = p.load(f)
 f.close()
 
 # name the states
-qName = ['distance to rear wheel contact',
-         'distance to the rear wheel contact',
-         'yaw angle',
-         'roll angle',
-         'pitch angle',
-         'steer angle',
-         'distance to front wheel contact',
-         'distance to front wheel contact',
+qName = ['longitudinal rear wheel contact',
+         'lateral rear wheel contact',
+         'yaw',
+         'roll',
+         'pitch',
+         'steer',
+         'longitudinal front wheel contact',
+         'lateral front wheel contact',
          'crank rotation',
-         'right knee lateral distance',
-         'left knee lateral distance',
-         'butt lateral distance',
-         'lean angle',
-         'twist angle']
+         'right knee lateral',
+         'left knee lateral',
+         'butt lateral',
+         'lean',
+         'twist']
 
 # name the physical quantity, 'len' = length, 'ang' = angle
 qUnit = ['length', 'length', 'angle', 'angle', 'angle', 'angle', 'length', 'length', 'angle', 'length', 'length', 'length','angle', 'angle']
@@ -52,7 +52,7 @@ qdDict = {}
 qddDict = {}
 nums = {}
 stats = {}
-condition = 'nohands'
+condition = 'towing + nohands'
 # for each unique speed
 for j, speed in enumerate(UniqueSpeeds):
     fstats = {}
@@ -88,7 +88,7 @@ for j, speed in enumerate(UniqueSpeeds):
                 # make a stats matrix with shape (percents, q's)
                 for k, v in qData['fstats'].item().items():
                     # fstats[k] is (5,14), k is ['q', 'qd', 'qdd']
-                    fstats[k] = np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))
+                    fstats[k] = np.vstack((v['2p'], v['lq'], v['median'], v['uq'], v['98p']))
                 # set matchNum so we know it is no longer the first match
                 matchNum = 1
             # else it is not the first match
@@ -98,7 +98,8 @@ for j, speed in enumerate(UniqueSpeeds):
                 qd = np.hstack((qd, qData['qd']))
                 qdd = np.hstack((qdd, qData['qdd']))
                 for k, v in qData['fstats'].item().items():
-                    fstats[k] = np.dstack((fstats[k], np.vstack((v['2q'], v['lq'], v['median'], v['uq'], v['98q']))))
+                    fstats[k] = np.dstack((fstats[k], np.vstack((v['2p'],
+                        v['lq'], v['median'], v['uq'], v['98p']))))
                 matchNum = 1
     # take the average of the computed frequency stats
     for k, v in fstats.items():
@@ -143,9 +144,23 @@ for i, name in enumerate(qName):
         ax1.yaxis.grid(True, linestyle='-', which='major', color='grey',
                               alpha=0.5)
         plt.xlabel('Speed [km/h]')
-        plt.title(st.capwords(qName[i]))
+        # make correct titles
+        if k == 'q' and qUnit[i] == 'angle':
+            plt.title(st.capwords(condition + ' ' + qName[i] + ' ' + qUnit[i]))
+        elif k == 'q' and qUnit[i] == 'length':
+            plt.title(st.capwords(condition + ' ' + qName[i] + ' ' + 'Distance'))
+        elif k == 'qd' and qUnit[i] == 'angle':
+            plt.title(st.capwords(condition + ' ' + qName[i] + ' ' + 'Angular Rate'))
+        elif k == 'qd' and qUnit[i] == 'length':
+            plt.title(st.capwords(condition + ' ' + qName[i] + ' ' + 'Speed'))
+        elif k == 'qdd' and qUnit[i] == 'angle':
+            plt.title(st.capwords(condition + ' ' + qName[i] + ' ' + 'Angular Acceleration'))
+        elif k == 'qdd' and qUnit[i] == 'length':
+            plt.title(st.capwords(condition + ' ' + qName[i] + ' ' + 'Acceleration'))
         directory = '../plots/' + camelcase_nospace(condition) + '/' + k + '/'
-        plt.savefig(directory + camelcase_nospace(qName[i]) + k + '.png')
+        filename = camelcase_nospace(condition) + camelcase_nospace(qName[i]) + k
+        extension = '.png'
+        plt.savefig(directory + filename + extension)
         # now modify the graph such that it reads the frequency spectrum
         for j, sp in enumerate(vInt): # for each speed in the current graph
             g = stats[str(sp)][k][:, i]
@@ -158,5 +173,6 @@ for i, name in enumerate(qName):
         # now fix the titles and labels
         plt.ylabel('Frequency [Hz]')
         plt.ylim(0., 50.)
-        plt.savefig(directory + camelcase_nospace(qName[i]) + k + 'freq.png')
+        plt.gca().set_title(plt.gca().get_title() + ' Frequency Spectrum')
+        plt.savefig(directory + filename + 'Freq' + extension)
 #plt.show()

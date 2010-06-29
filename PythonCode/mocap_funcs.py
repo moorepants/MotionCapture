@@ -212,7 +212,7 @@ def curve_area_stats(x, y):
         flags = [False for flag in range(5)]
         for i, val in enumerate(curve):
             if val > percents[0][j] and flags[0] == False:
-                xstats['2q'].append(x[i])
+                xstats['2p'].append(x[i])
                 flags[0] = True
             elif val > percents[1][j] and flags[1] == False:
                 xstats['lq'].append(x[i])
@@ -224,7 +224,7 @@ def curve_area_stats(x, y):
                 xstats['uq'].append(x[i])
                 flags[3] = True
             elif val > percents[4][j] and flags[4] == False:
-                xstats['98q'].append(x[i])
+                xstats['98p'].append(x[i])
                 flags[4] = True
         if flags[4] == False:
             # this is what happens if it finds none of the above
