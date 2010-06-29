@@ -52,7 +52,7 @@ qdDict = {}
 qddDict = {}
 nums = {}
 stats = {}
-condition = 'normal biking'
+condition = 'nohands'
 # for each unique speed
 for j, speed in enumerate(UniqueSpeeds):
     fstats = {}
