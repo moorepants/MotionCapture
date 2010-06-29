@@ -8,11 +8,14 @@ q = np.load('../data/npy/states/2042q.npy')
 f, a = freq_spectrum(100, q)
 stats = curve_area_stats(f, a)
 for i, variable in enumerate(a.T):
+    legend = ['Frequency Spectrum']
     plt.figure(i)
     plt.plot(f, variable)
     for percent, value in stats.items():
         plt.plot([value[i], value[i]], [0, np.max(variable)], linewidth=2)
+        legend.append(percent)
     plt.axis('tight')
+    plt.legend(legend)
     plt.xlim([0, 5])
 
 # do a test frequency spectrum with know amplitudes
