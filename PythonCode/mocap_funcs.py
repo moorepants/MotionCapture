@@ -1,4 +1,4 @@
-from numpy import shape, arange, linspace, abs, diff, array, sign
+from numpy import shape, arange, linspace, abs, diff, array, sign, zeros_like
 from numpy.fft import fft, fftfreq
 from scipy.integrate import trapz, cumtrapz
 from string import capwords, split, join
@@ -53,7 +53,7 @@ def camelcase_nospace(string):
     '''
     return join(split(capwords(string)), '')
 
-def derivative(x, y):
+def derivative(x, y, method='combination'):
     '''
     Return the derivative of y wrt to x.
 
@@ -61,13 +61,39 @@ def derivative(x, y):
     -----------
     x : ndarray, shape(n,)
     y : ndarray, shape(n,)
+    type : string
+        'forward' : forward difference
+        'central' : central difference
+        'backward' : backward difference
+        'combination' : forward on the first point, backward on the last and
+        central on the rest
 
     Returns:
     --------
-    dydx : ndarray, shape(n-1,)
+    dydx : ndarray, shape(n,) for combination else shape(n-1,)
+
+    The combo method doesn't work for matrices yet.
 
     '''
-    return diff(y)/diff(x)
+    if method == 'forward':
+        return diff(y)/diff(x)
+    elif method == 'combination':
+        dxdy = zeros_like(y)
+        for i, yi in enumerate(y[:]):
+            if i == 0:
+                dxdy[i] = (-3*y[0] + 4*y[1] - y[2])/2/(x[1]-x[0])
+            elif i == len(y) - 1:
+                dxdy[-1] = (3*y[-1] - 4*y[-2] + y[-3])/2/(x[-1] - x[-2])
+            else:
+                dxdy[i] = (y[i + 1] - y[i - 1])/2/(x[i] - x[i - 1])
+        print i
+        return dxdy
+    elif method == 'backward':
+        print 'There is no backward difference method defined, want to write one?'
+    elif method == 'central':
+        print 'There is no central difference method defined, want to write one?'
+    else:
+        print 'There is no sure method here! Try Again'
 
 def uniquify(seq):
     # Not order preserving
