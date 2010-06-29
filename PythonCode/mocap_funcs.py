@@ -162,17 +162,17 @@ def freq_spectrum(Fs, Data):
     # calculate the closest power of 2 for the length of the data
     n = nextpow2(L)
     #print 'n =', n
-    Y = fft(Data, n) # the matlab thing divides this by L
+    Y = fft(Data, n)/L # divide by L for scaling
     #print 'Y =', Y, Y.shape, type(Y)
     f = fftfreq(n, d=T)
     #f = Fs/2.*linspace(0, 1, n)
     #print 'f =', f, f.shape, type(f)
     freq = f[1:n/2]
     try:
-        amp = abs(Y[:, 1:n/2]).T # mulitply by 2??
+        amp = 2*abs(Y[:, 1:n/2]).T # multiply by 2 because we take half the vector
         #power = abs(Y[:, 1:n/2])**2
     except:
-        amp = abs(Y[1:n/2]) # mulitply by 2??
+        amp = 2*abs(Y[1:n/2])
         #power = abs(Y[1:n/2])**2
     return freq, amp
 

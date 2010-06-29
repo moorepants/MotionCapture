@@ -30,7 +30,7 @@ qName = ['distance to rear wheel contact',
          'twist angle']
 
 # name the physical quantity, 'len' = length, 'ang' = angle
-qUnit = ['len', 'len', 'ang', 'ang', 'ang', 'ang', 'len', 'len', 'ang', 'len', 'len', 'len','ang', 'ang']
+qUnit = ['length', 'length', 'angle', 'angle', 'angle', 'angle', 'length', 'length', 'angle', 'length', 'length', 'length','angle', 'angle']
 
 # set to a single run for testing
 #runInfo['run'] = ['2002']
@@ -118,7 +118,7 @@ for j, speed in enumerate(UniqueSpeeds):
 vInt = [int(speed) for speed in nums.keys()]
 vInt.sort()
 lenYlabels = {'q':'Distance [m]', 'qd':'Rate [m/s]', 'qdd':'Acceleration [$m/s^2$]'}
-angYlabels = {'q':'Angel [deg]', 'qd':'Angular Rate [deg/s]', 'qdd':'AngularAcceleration [deg/$s^2$]'}
+angYlabels = {'q':'Angle [deg]', 'qd':'Angular Rate [deg/s]', 'qdd':'AngularAcceleration [deg/$s^2$]'}
 # for each of the states
 for i, name in enumerate(qName):
     qBox = {'q':[], 'qd':[], 'qdd':[]}
@@ -129,10 +129,10 @@ for i, name in enumerate(qName):
     for k in qBox.keys():
         fig = plt.figure()
         ax1 = fig.add_subplot(111)
-        if qUnit[i] == 'len':
+        if qUnit[i] == 'length':
             bp = plt.boxplot(qBox[k], notch=0, sym='', vert=1, whis=1.5, positions=vInt)
             plt.ylabel(lenYlabels[k])
-        elif qUnit[i] == 'ang':
+        elif qUnit[i] == 'angle':
             bp = plt.boxplot([180./np.pi*s for s in qBox[k]], notch=0, sym='', vert=1, whis=1.5, positions=vInt)
             plt.ylabel(angYlabels[k])
         else:
