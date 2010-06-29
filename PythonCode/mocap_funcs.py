@@ -53,7 +53,7 @@ def camelcase_nospace(string):
     '''
     return join(split(capwords(string)), '')
 
-def derivative(x, y, method='combination'):
+def derivative(x, y, method='forward'):
     '''
     Return the derivative of y wrt to x.
 
@@ -86,7 +86,6 @@ def derivative(x, y, method='combination'):
                 dxdy[-1] = (3*y[-1] - 4*y[-2] + y[-3])/2/(x[-1] - x[-2])
             else:
                 dxdy[i] = (y[i + 1] - y[i - 1])/2/(x[i] - x[i - 1])
-        print i
         return dxdy
     elif method == 'backward':
         print 'There is no backward difference method defined, want to write one?'
