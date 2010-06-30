@@ -182,7 +182,7 @@ hub. The Browser is described by the manufacturer as ``stable'' and the Stratos
 Deluxe as ``nervous.''
 \begin{figure}
     \centering
-        \includegraphics[width=\textwidth]{figures/treadmill.jpg}
+        \includegraphics[width=\textwidth]{figures/treadmill.pdf}
     \caption{The $3\times5$ m treadmill at the Vrije Universiteit Amsterdam.}
     \label{fig:treadmill}
 \end{figure}
@@ -213,7 +213,7 @@ the three dimensional locations of 31 markers, 11 of which were located on the
 bicycle and 20 that mapped the rider Fig. (\ref{fig:markerloc}).
 \begin{figure}
     \centering
-        \includegraphics[width=80mm]{figures/markerLoc.pdf}
+        \includegraphics[width=80mm]{figures/markerloc.pdf}
     \caption{Schematic of the marker positions. The bicycle and rider are colored light gray and dark gray, respectively.}
     \label{fig:markerloc}
 \end{figure}
@@ -329,8 +329,11 @@ were less than 10 time steps, or 0.1 sec, otherwise the trials were discarded.
 \label{sec:relativeMotion}
 We were interested in the analysis of three different marker combinations: the
 bicycle, the rider and the bicycle/rider. The motion of the bicycle and the
-bicycle/rider were calculated with reference to the $\mathbf{N}$ inertial frame
-and the motion of the rider was calculated with respect to the rear frame of
+bicycle/rider were calculated with reference to the $\mathbf{N}$ inertial
+frame\footnote[1]{The $\mathbf{N}$ frame is used instead of the $\mathbf{M}$ frame
+comply with the vehicle coordinate standards used in \cite{Meijaard2007}. See
+also Appendix~\ref{sec:inFrames}.} and the motion of the rider was calculated
+with respect to the rear frame of
 the bicycle $\mathbf{B}$ Fig. (\ref{fig:frames}). These three marker
 combinations allowed us to differentiate more easily between rider specific and
 bicycle specific motions. Furthermore, six of the variables that describe the
