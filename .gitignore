@@ -8,3 +8,14 @@
 *.pdf
 *.fig
 *.mat
+*.dir
+*.png
+*.jpg
+*.doc
+*.dvi
+alTmp.*
+*.lnk
+*.zip
+*.tar
+*.gz
+*.swp
