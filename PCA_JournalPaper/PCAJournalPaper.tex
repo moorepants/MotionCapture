@@ -338,7 +338,13 @@ the bicycle $\mathbf{B}$ Fig. (\ref{fig:frames}). These three marker
 combinations allowed us to differentiate more easily between rider specific and
 bicycle specific motions. Furthermore, six of the variables that describe the
 configuration of the bicycle in time were calculated to give insight into the
-rigid body dynamics. Details of these calculations are shown in
+rigid body dynamics. The configuration variables $q_1$ and $q_2$ locate the
+contact point of the rear wheel of the bicycle. The $\mathbf{B}$ frame captures
+the yaw ($q_3$) and roll ($q_4$) motions
+of the bicycle frame, the $\mathbf{D}$ frame is an intermediate frame that
+differs from $\mathbf{B}$ only by the bike's headtube angle ($\lambda$), and the
+$\mathbf{E}$ frame captures the steering angle ($q_7$) of the bicycle fork relative to
+the bicycle frame. The pitch of the bicycle frame ($q_6$) is assumed to be zero. Details of these calculations are shown in
 Appendix~\ref{sec:inFrames}.
 \begin{figure}[tbp]
     \begin{center}
@@ -701,8 +707,8 @@ roughly remains constant at all speeds.
 
 The steer angle amplitude-frequency plot for each of the speeds calculated from
 the bicycle rigid body motions is given in Fig. (\ref{pedalsteerangle}). It
-clearly shows that the steering actions take place at (high speed) or around
-(low speed) the pedaling frequency. It also shows that the amplitude of the
+clearly shows that the steering actions take place at or around the pedaling
+frequency for high and low speeds, respectively. It also shows that the amplitude of the
 steering angle increases by 5000\% when the speed decreases from 30 km/h to 2
 km/h. Figure (\ref{pedalsteerangle}) also shows the open loop, rigid rider,
 weave eigenfrequency for each speed obtained from Fig. (\ref{fig:eigPlot}).
