@@ -79,7 +79,7 @@
 
 \institute{J. K. Moore and M. Hubbard \at
               Mechanical and Aerospace Engineering\\
-	      University of California\\
+	      University of California, Davis\\
 	      One Shields Avenue, Davis, CA 95616-5294, USA\\
               Tel.: +01-530-752-0580\\
               Fax: +01-530-752-4158\\
@@ -105,7 +105,7 @@
 Recent observations of a bicyclist riding through town and on a treadmill show
 that the rider uses the upper body very little when performing normal maneuvers
 and that the bicyclist may in fact primarily use steering input for control.
-They also revealed that other motions such as lateral movement of the knees
+The observations also revealed that other motions such as lateral movement of the knees
 were used in low speed stabilization. In order to validate the hypothesis that
 there is little upper body motion during casual cycling, an in-depth motion
 capture analysis was performed on the bicycle and rider system.
@@ -149,12 +149,13 @@ treadmill~\cite{Kooijman2009a} show that the rider moves the upper body very
 little when performing normal maneuvers and that the bicyclist may in fact
 primarily use steering input for control. This corresponds well with the fact
 that control by leaning requires high gains compared to the gains required for
-steering when employing a optimal control strategy on a model such as
-LQR~\cite{Peterson2008a,Schwab2008,Sharp2008a}. The observations also revealed
+steering when employing a optimal control strategy on a
+model~\cite{Peterson2008a,Schwab2008,Sharp2008a}. The observations also
+revealed
 that the rider may use other control inputs such as drastic knee movements at
 low speeds. These conclusions were drawn by visually reviewing video data, so a
 more rigorous objective method of characterizing the dominant movements of the
-bicyclist while stabilizing a bicycle is needed. In order to validate the
+bicyclist while stabilizing a bicycle was needed. In order to validate the
 hypothesis that there is little upper body motion during normal cycling, motion
 capture techniques were used on the bicycle and rider system with the intent to
 use principal component analysis to identify the major motion patterns.
@@ -176,9 +177,9 @@ with a motion capture system. The tasks were performed on a $3\times5$ meter
 treadmill Fig. (\ref{fig:treadmill}) capable of belt speeds up to 35 km/h. The
 treadmill was chosen because the envelope of space was suitable for the motion
 capture system and it eliminated any disturbances such as wind, rough ground,
-and obstacles.  We chose three male riders of similar age [$27$ years
-($\sigma=4$)] and build [height$=1.81$ m ($\sigma=0.04$) and mass$=73$ kg
-($\sigma=1$)]. We also used two different Dutch bicycles: a 2008 Batavus
+and obstacles.  We chose three male riders of similar age [23, 26, 31 years] and
+build [height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)]. We also used two
+different Dutch bicycles: a 2008 Batavus
 Browser with a 3 speed hub and a 2008 Batavus Stratos Deluxe with a 7 speed
 hub. The Browser is described by the manufacturer as ``stable'' and the Stratos
 Deluxe as ``nervous.''
@@ -196,7 +197,7 @@ infrared emitting markers that are placed on the moving bodies and connected to
 a central control unit. Each marker emits an infrared signal at a different
 frequency and the infrared pulses are captured by camera modules each
 containing three cameras. The accuracy of the three dimensional measurements is
-$\pm0.15$ mm. We used three camera units and each of these units consists of
+$\pm0.15$ mm~\cite{NorthernDigitalIncorporated2009}. We used three camera units and each of these units consists of
 three sensors. The system has no hardware based noise reduction. Wiring
 harnesses were built for both the rider and the bicycles to facilitate easy
 bicycle and rider exchange Fig. (\ref{fig:markers}).
@@ -227,10 +228,16 @@ attached to the rear frame. A marker was attached on the right and left sides
 of the center of each wheel, the seat stays, the ends of the handlebars, and
 the head tube. A single marker was also attached to the back of the seat post.
 
-We recorded the location of 20 points on the rider: left and right sides of the
-helmet, back of the helmet, shoulders, elbows, wrists, between the shoulder
-blades on the spine, the midpoint between the shoulder blades and the coccyx,
-the coccyx, hips, knees, ankles and feet. The body markers were not placed such
+We recorded the locations of 20 points
+on the rider (Fig.~\ref{fig:markerloc}): left and right sides of
+the helmet near the temple, back of the helmet, shoulders (greater tuberosity
+of the humerus), elbows (lateral epicondyle of the humerus), wrists (pisiform
+of the carpus), between the
+shoulder blades on the spine (T6 of the thoracic vertebrae), the tail bone
+(coccyx), midpoint on the spine between the coccyx and shoulder blades (L1 on
+the lumbar vertebrae), hips (greater trochanter of the femur), knees (lateral
+epicondyle of the femur), ankles (lateral malleolus of the fibula) and feet
+(proximal metatarsal joint). The body markers were not necessarily placed such
 that a complete rigid body model could easily be fit to the data. This was done
 to save setup and processing time because we only wanted a stick figure
 representation of the rider that allowed us to visually observe the dominant
