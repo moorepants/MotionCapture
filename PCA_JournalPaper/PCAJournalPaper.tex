@@ -50,6 +50,8 @@
 %\usepackage{latexsym}
 % etc.
 \usepackage{subfig}
+\usepackage[title]{appendix}
+
 %
 % please place your own definitions here and don't use \def but
 % \newcommand{}{}
@@ -866,7 +868,7 @@ thank the Dutch bicycle manufacturer, Batavus, for supplying the bicycles.
 %Author, Book title, page numbers. Publisher, place (year)
 % etc
 %\end{thebibliography}
-\appendix
+\begin{appendices}
 \section{Inertial frames and configuration variables}
 \label{sec:inFrames}
 The transformation from marker coordinates to rigid body inertial frames and
@@ -1010,6 +1012,7 @@ bicycle as a function of time.
     \textrm{Steer angle: }q_7 = \arccos\left(\hat{\mathbf{d}_1}\cdot\hat{\mathbf{e}_1}\right)
 \label{eq:q7}
 \end{equation}
+\end{appendices}
 \end{document}
 % end of file template.tex
 
