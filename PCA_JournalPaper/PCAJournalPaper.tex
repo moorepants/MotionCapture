@@ -243,7 +243,7 @@ to save setup and processing time because we only wanted a stick figure
 representation of the rider that allowed us to visually observe the dominant
 motions of the rider.
 
-The stability tasks were designed such that the rider rode at a constant speed
+The stability tasks were designed such that the rider would ride at a constant speed
 within the range of 2 to 30 km/h. The bicyclists were told to maintain an
 upright straight ahead course on the treadmill and to look into the distance,
 with exception of the line tracking task. The bicyclists were instructed to
@@ -281,8 +281,8 @@ tests and their descriptions:
 These tasks were designed with the intent to answer several questions:
 \begin{enumerate}
     \item What upper body motions are used while bicycling?
-    \item How does the motion of the system change with respect to change in forward speed?
-    \item How much does pedaling influence the control actions?
+    \item How does the system motion change with respect to change in forward speed?
+    \item How does pedaling influence the control actions?
     \item Can the open loop rigid body dynamics be detected in the controlled state?
     \item What does the rider do differently to control the bicycle when riding no-hands?
     \item Do different bicyclists perform similar motions while performing the same task?
@@ -301,9 +301,9 @@ stabilization tasks. In order to predict the uncontrolled (open loop)
 eigenvalues of the rigid rider system, the basic geometry, mass, center of
 gravity locations, and moments of inertia of the bicycle were measured. Also,
 the riders were measured and weighed such that the body segment geometry, mass,
-center of gravity locations, and moments of inertia could be estimated. These
-methods are described in \cite{Moore2009a}. This data was used to calculate
-eigenvalues and eigenvectors of the uncontrolled open loop system Fig.
+center of gravity locations, and moments of inertia could be estimated. The
+physical parameter estimation methods are described in \cite{Moore2009a}. This
+data was used to calculate eigenvalues and eigenvectors of the uncontrolled open loop system Fig.
 (\ref{fig:eigPlot}).
 \begin{figure}[tbp]
     \begin{center}
@@ -341,7 +341,7 @@ bicycle, the rider and the bicycle/rider. The motion of the bicycle and the
 bicycle/rider were calculated with reference to the $\mathbf{N}$ inertial
 frame\footnote[1]{The $\mathbf{N}$ frame is used instead of the $\mathbf{M}$ frame
 comply with the vehicle coordinate standards used in \cite{Meijaard2007}. See
-also Appendix~\ref{sec:inFrames}.} and the motion of the rider was calculated
+Appendix~\ref{sec:inFrames} for the derivation.} and the motion of the rider was calculated
 with respect to the rear frame of
 the bicycle $\mathbf{B}$ Fig. (\ref{fig:frames}). These three marker
 combinations allowed us to differentiate more easily between rider specific and
@@ -365,7 +365,7 @@ Appendix~\ref{sec:inFrames}.
 
 \subsection{Principal Component Analysis}
 \label{sec:pca}
-We used Principal Component Analysis~\cite{Jolliffe2002} to extract and
+We used Principal Component Analysis, PCA,~\cite{Jolliffe2002} to extract and
 characterize the dominant motions of the system. Calculating the principal
 components effectively transforms the space of the data to a space that
 maximizes the variance of the data. The typical advantage of PCA is that the
@@ -406,7 +406,7 @@ One method of determining the principal components is to calculate the
 eigenvectors of the covariance matrix of the mean-subtracted data. We begin by
 calculating the mean Eq. (\ref{eq:mean}) of the rows of $\mathbf{P}$ and
 subtracting it from each column of $\mathbf{P}$ to form the mean-subtracted
-data matrix $\mathbf{B}$ Eq. (\ref{eq:B}).
+data matrix $\mathbf{B}$, Eq. (\ref{eq:B}).
 \begin{equation}
     \mathbf{u}=\frac{1}{n}\sum_{j=1}^n\mathbf{p}_j
     \label{eq:mean}
@@ -515,7 +515,7 @@ the trajectories with time. We began processing the data by reviewing each
 principal component of each trial in the GUI and noting down what type of
 motion we saw Tab. (\ref{tab:trialDesc}). These descriptions were subjective
 because we grouped marker movement based on our preconceived understanding of
-rider and bicycle motion. Some of the modes displayed motions that were not
+rider and bicycle motion. Some of the components displayed motions that were not
 physically possible such as the upper leg stretching in length during the knee
 bounce. This is possible when examining a single component but when
 superimposed over the rest of the components the unrealistic motions are not
@@ -642,8 +642,8 @@ typically not possible. Therefore components were grouped into classes, where
 each class shows a specific physically relevant motion. The same total motion
 of the class can be described by one set of components in one trial and
 another, probably different, set of components in another trial. How the
-amplitudes of these classes change between two experiments can be used as a
-measure for how bicycling has changed among trials.
+amplitudes of these classes vary among experiments can be used as a
+measure for how the rider and bicycle motion varies among trials.
 
 To objectively identify which coefficients show the same type of motion and
 could therefore form a class, the frequency content of each of the time
@@ -790,7 +790,7 @@ upper body motions are used for control then this control is in the pedaling
 frequency. Looking at motions with respect to speed, we observed that there is
 a great deal of steering at low speeds and this decreases in magnitude as speed
 increases. This is typically the same for all motions and it shows that the
-bicycle and rider system becomes more stable at higher speeds with little
+bicycle and rider system becomes more stable at higher speeds with few
 dectecable control actions. At low speeds, one interesting lower body movment
 presented itself. We observed lateral knee motions which may also be used for
 additional control. The bicycle model that we present predicts that the weave
@@ -800,7 +800,10 @@ loop uncontrolled bicycle stabilizes at but we found no evidence of a distinct
 weave frequency in the steer angle time histories of each run. In fact the only
 distinct frequency that sometimes appeared was the pedaling frequency. So the
 rider's control mechanisms may be in fact different than what the open loop
-stabilization predicts. 
+stabilization predicts. Principle Component Analysis provided a unique view
+into the control actions of a rider on a bicycle, but limitations in data
+reduction and the motion grouping leave room for more objective statistical
+views into the bicycle and rider motion.
 \begin{acknowledgements}
 We would like to thank Knoek van Soest and Richard Casius of the Faculty of
 Human Movement Sciences at the Vrije Universiteit, Amsterdam for their cooperation and use
