@@ -169,7 +169,7 @@ separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
 candidates for control inputs. This will be valuable for design of a realistic
 biomechanical based control system of a bicycle rider, among other things.
-\section{EXPERIMENTS}
+\section{Experiments}
 \label{sec:exp}
 To test our hypotheses, three riders performed a set of stability tasks in a
 controlled environment while the motion of the bicycle and rider were collected
@@ -216,7 +216,7 @@ the three dimensional locations of 31 markers, 11 of which were located on the
 bicycle and 20 that mapped the rider Fig. (\ref{fig:markerloc}).
 \begin{figure}
     \centering
-        \includegraphics[width=80mm]{figures/markerloc.pdf}
+        \includegraphics[height=3.61in]{figures/markerloc.pdf}
     \caption{Schematic of the marker positions. The bicycle and rider are colored light gray and dark gray, respectively.}
     \label{fig:markerloc}
 \end{figure}
@@ -307,7 +307,7 @@ data was used to calculate eigenvalues and eigenvectors of the uncontrolled open
 (\ref{fig:eigPlot}).
 \begin{figure}[tbp]
     \begin{center}
-        \includegraphics[width=\textwidth]{figures/eigPlot.pdf}
+        \includegraphics[width=0.7\textwidth]{figures/eigPlot.pdf}
     \end{center}
     \caption{Eigenvalues of the Browser bicycle with the third rider as a
     function of speed. Note that the initially unstable weave motion becomes
@@ -357,7 +357,7 @@ the bicycle frame. The pitch of the bicycle frame ($q_6$) is assumed to be zero.
 Appendix~\ref{sec:inFrames}.
 \begin{figure}[tbp]
     \begin{center}
-        \includegraphics[width=\textwidth]{figures/frames.pdf}
+        \includegraphics[width=4in]{figures/frames.pdf}
     \end{center}
     \caption{Diagram of the bicycle's inertial frame $\mathbf{N}$, rear frame $\mathbf{B}$, front frame $\mathbf{E}$ and configuration variables.}
     \label{fig:frames}
@@ -520,8 +520,8 @@ physically possible such as the upper leg stretching in length during the knee
 bounce. This is possible when examining a single component but when
 superimposed over the rest of the components the unrealistic motions are not
 present. Furthermore, for each component we examined amplitude and frequency
-content of the associated coefficients $a_{ij}$ as shown in Fig.
-(\ref{fig:3062}) and noted down the shape of the frequency spectrum and the
+content of the associated coefficients $a_{ij}$ as shown in Figures
+(\ref{fig:coef3062}) and (\ref{fig:fft3062}) and noted down the shape of the frequency spectrum and the
 frequencies at any distinct spikes.
 
 \begin{table}
@@ -551,14 +551,21 @@ frequencies at any distinct spikes.
 
 \begin{figure}[tb]
     \begin{center}
-        \subfloat[]{\label{fig:coef3062}\includegraphics[width=0.5\textwidth]{figures/coef3062.pdf}}
-        \subfloat[]{\label{fig:fft3062}\includegraphics[width=0.5\textwidth]{figures/fft3062.pdf}}
+        \includegraphics[width=0.75\textwidth]{figures/coef3062.pdf}
     \end{center}
-    \caption{(a) Coefficients $a_{ij}$ versus time and (b) the frequency
+    \caption{Coefficients $a_{ij}$ versus time content of the first five
+    principal components for normal pedaling at 10 km/h.}
+    \label{fig:coef3062}
+\end{figure}
+\begin{figure}[tb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/fft3062.pdf}
+    \end{center}
+    \caption{The frequency
     content of the first five principal components for normal pedaling at 10
-    km/h. The vertical line in (b) represents the open loop weave frequency
+    km/h. The vertical line in represents the open loop weave frequency
     (0.28hz) determined from Fig. (\ref{fig:eigPlot}) at this forward speed .}
-    \label{fig:3062}
+    \label{fig:fft3062}
 \end{figure}
 Several conclusions can be drawn from examining the coefficient data. First of
 all, some of the components are linked by the frequencies of the coefficients
