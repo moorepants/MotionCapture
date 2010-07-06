@@ -69,10 +69,10 @@
 
 %\titlerunning{Short form of title}        % if too long for running head
 
-\author{Jason K. Moore \and
-        J. D. G. Kooijman \and
-	    A. L. Schwab \and
-	    Mont Hubbard %etc.
+\author{Jason~K.~Moore \and
+        J.~D.~G.~Kooijman \and
+	    A.~L.~Schwab \and
+	    Mont~Hubbard %etc.
 }
 
 %\authorrunning{Short form of author list} % if too long for running head
@@ -197,7 +197,8 @@ infrared emitting markers that are placed on the moving bodies and connected to
 a central control unit. Each marker emits an infrared signal at a different
 frequency and the infrared pulses are captured by camera modules each
 containing three cameras. The accuracy of the three dimensional measurements is
-$\pm0.15$ mm~\cite{NorthernDigitalIncorporated2009}. We used three camera units and each of these units consists of
+$\pm0.15$ mm~\cite{NorthernDigitalIncorporated2009}. We used three camera units
+and each of these units consists of
 three sensors. The system has no hardware based noise reduction. Wiring
 harnesses were built for both the rider and the bicycles to facilitate easy
 bicycle and rider exchange Fig. (\ref{fig:markers}).
@@ -413,7 +414,8 @@ data matrix $\mathbf{B}$, Eq. (\ref{eq:B}).
 \end{equation}
 A vector of ones
 \begin{displaymath}
-    \mathbf{h}^T=\left[h_1\quad h_2\quad\ldots\quad h_j\quad\ldots\quad h_n\right]\textrm{ where }h_j=1\textrm{ for all }j
+    \mathbf{h}^T=\left[h_1\quad h_2\quad\ldots\quad h_j\quad\ldots\quad h_n\right]
+    \textrm{ where }h_j=1\textrm{ for all }j
     \label{eq:h}
 \end{displaymath}
 allows us to subtract $\mathbf{u}$ from each column of $\mathbf{P}$,
@@ -499,7 +501,9 @@ also be displayed for comparison.
     \begin{center}
         \includegraphics[width=\textwidth]{figures/GUI.pdf}
     \end{center}
-    \caption{Screen shot of the \textsc{Matlab} graphical user interface (GUI) used to visualize principal components and compare between different components and trials.}
+    \caption{Screen shot of the \textsc{Matlab} graphical user interface (GUI)
+    used to visualize principal components and compare between different
+    components and trials.}
     \label{fig:GUI}
 \end{figure}
 
@@ -521,7 +525,8 @@ bounce. This is possible when examining a single component but when
 superimposed over the rest of the components the unrealistic motions are not
 present. Furthermore, for each component we examined amplitude and frequency
 content of the associated coefficients $a_{ij}$ as shown in Figures
-(\ref{fig:coef3062}) and (\ref{fig:fft3062}) and noted down the shape of the frequency spectrum and the
+(\ref{fig:coef3062}) and (\ref{fig:fft3062}) and noted down the shape of the
+frequency spectrum and the
 frequencies at any distinct spikes.
 
 \begin{table}
@@ -622,15 +627,15 @@ components. These motions, illustrated in Fig. (\ref{fig:motions}), are:
 \end{description}
 \begin{figure}[tbp]
     \begin{center}
-        \subfloat[]{\label{fig:steerRoll}\includegraphics[width=25mm]{figures/rollSteer.pdf}}\qquad
-        \subfloat[]{\label{fig:yaw}\includegraphics[width=25mm]{figures/yaw.pdf}}\qquad
-        \subfloat[]{\label{fig:pedaling}\includegraphics[width=25mm]{figures/pedal.pdf}}\qquad
-        \subfloat[]{\label{fig:bend}\includegraphics[width=25mm]{figures/bend.pdf}}
+        \subfloat[]{\label{fig:steerRoll}\includegraphics[width=20mm]{figures/rollSteer.pdf}}\qquad
+        \subfloat[]{\label{fig:yaw}\includegraphics[width=20mm]{figures/yaw.pdf}}\qquad
+        \subfloat[]{\label{fig:pedaling}\includegraphics[width=20mm]{figures/pedal.pdf}}\qquad
+        \subfloat[]{\label{fig:bend}\includegraphics[width=20mm]{figures/bend.pdf}}
 
-        \subfloat[]{\label{fig:lean}\includegraphics[width=25mm]{figures/lean.pdf}}\qquad
-        \subfloat[]{\label{fig:twist}\includegraphics[width=25mm]{figures/twist.pdf}}\qquad
-        \subfloat[]{\label{fig:bounce}\includegraphics[width=25mm]{figures/bounce.pdf}}\qquad
-        \subfloat[]{\label{fig:knees}\includegraphics[width=25mm]{figures/knees.pdf}}
+        \subfloat[]{\label{fig:lean}\includegraphics[width=20mm]{figures/lean.pdf}}\qquad
+        \subfloat[]{\label{fig:twist}\includegraphics[width=20mm]{figures/twist.pdf}}\qquad
+        \subfloat[]{\label{fig:bounce}\includegraphics[width=20mm]{figures/bounce.pdf}}\qquad
+        \subfloat[]{\label{fig:knees}\includegraphics[width=20mm]{figures/knees.pdf}}
     \end{center}
     \caption{Diagrams of the common motions. (a) Top view of the bicycle steer
     and roll, (b) the bicycle yaw, (c) the horizontal and vertical components
@@ -672,14 +677,15 @@ each made up of combinations of the previously described motions, with
 reference to Fig. (\ref{fig:motions}):
 \begin{description}[Steer-Yaw-Roll]
     \item[Drift] Drift.
-    \item[Pedaling] Pedaling (\ref{fig:pedaling}), Bend (\ref{fig:bend}), Lean (\ref{fig:lean}), Twist (\ref{fig:twist}).
-    \item[Steer-Yaw-Roll] Steer and Roll (\ref{fig:steerRoll}), Yaw (\ref{fig:yaw}).
+    \item[Pedaling] Pedaling (\ref{fig:pedaling}), Bend (\ref{fig:bend}), Lean
+        (\ref{fig:lean}), Twist (\ref{fig:twist}).
+    \item[Steer-Yaw-Roll] Steer and Roll (\ref{fig:steerRoll}), Yaw
+        (\ref{fig:yaw}).
     \item[Bounce] Bounce (\ref{fig:bounce}).
     \item[Knees] Knees (\ref{fig:knees}).
     \item[Others] Head and components that showed noise of some
     sort.
 \end{description}
-
 In most cases the correlated coefficients described a single class. However, in
 some cases this was not the case and the coefficients were used to describe
 more than one class. An example is that at low speed the components containing
@@ -694,10 +700,9 @@ components were recalculated without the components placed in the Drift and the
 Other classes.
 
 We also calculated various configuration variables from the bicycle marker locations
-(See Appendix \ref{sec:inFrames}) indepedent of the PCA perspective for more
+(See Appendix \ref{sec:inFrames}) independent of the PCA perspective for more
 specific motion characterizations. This allowed us to investigate the bicycle's
 configuration variable time histories and frequency content explicitly.
-
 \subsection{Characterization of motions during normal pedaling}
 \label{sec:normalPed}
 Figure (\ref{jellybean}) shows how the percentage of the four classes:
@@ -712,7 +717,7 @@ The increase is not as significant as that of the Steer-Yaw-Roll class
 roughly remains constant at all speeds.
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=\textwidth]{figures/pedaling4classes.pdf}
+    \includegraphics[width=0.7\textwidth]{figures/pedaling4classes.pdf}
     \caption{The percentage of the motion from each of the four classes:
     Pedaling, Steer-Yaw-Roll, Bounce and Knees, at the different speeds when
     the Drift and `Other' classes were removed from the results for normal
@@ -720,7 +725,6 @@ roughly remains constant at all speeds.
     are scaled to 10\% (right axis).}
     \label{jellybean}
 \end{figure}
-
 The steer angle amplitude-frequency plot for each of the speeds calculated from
 the bicycle rigid body motions is given in Fig. (\ref{pedalsteerangle}). It
 clearly shows that the steering actions take place at or around the pedaling
@@ -751,7 +755,7 @@ present in analysis. Furthermore, no bend, lean or twist motions were detected
 during the experiments.
 \begin{figure}[tb]
     \centering
-        \includegraphics[width=\textwidth]{figures/towing3classes.pdf}\\
+        \includegraphics[width=0.7\textwidth]{figures/towing3classes.pdf}\\
     \caption{The percentage of the motion from each of the three classes:
     Steer-Yaw-Roll, Bounce and Knees, at the different speeds when the Drift
     and `Other' classes were removed from the results for trials without
@@ -759,7 +763,6 @@ during the experiments.
     are scaled to 20\% (right axis).}
     \label{missjellybean}
 \end{figure}
-
 It is clear that at all speeds most motion takes place in the Steer-Yaw-Roll
 class. Also interesting is that unlike in the normal pedaling situation, the
 Knee motion percentage does not increase at low speeds.
@@ -782,14 +785,13 @@ eigenfrequency is not the frequency in which the bicycle is controlled.
     (\ref{fig:eigPlot}).}
     \label{towingsteerangle}
 \end{figure}
-
 \section{Conclusions}
 \label{sec:conclusions}
 The view provided by principal components analysis into bicycle rider
 interaction, biomechanics and control led us to several conclusions. During
 normal bicycling there are several dominant upper body motions: lean, bend, twist and
 bounce and all of them seemed to be linked to the pedaling motion. This is important in
-understanding when determining which inputs a for the fundmental balance
+understanding when determining which inputs a for the fundamental balance
 control and which inputs are reactions to disturbances from pedaling. Due to
 this observation we hypothesize that lateral control is mainly done by steering
 since we observed only upper body motion in the pedaling frequency. But if
@@ -798,10 +800,10 @@ frequency. Looking at motions with respect to speed, we observed that there is
 a great deal of steering at low speeds and this decreases in magnitude as speed
 increases. This is typically the same for all motions and it shows that the
 bicycle and rider system becomes more stable at higher speeds with few
-dectecable control actions. At low speeds, one interesting lower body movment
+detectable control actions. At low speeds, one interesting lower body movement
 presented itself. We observed lateral knee motions which may also be used for
 additional control. The bicycle model that we present predicts that the weave
-mode is stable above about 16 km/h. Intution would possibly lead you to believe
+mode is stable above about 16 km/h. Intuition would possibly lead you to believe
 that a rider would stabilize the weave mode at the same frequency as the open
 loop uncontrolled bicycle stabilizes at but we found no evidence of a distinct
 weave frequency in the steer angle time histories of each run. In fact the only
@@ -818,82 +820,8 @@ of their equipment for the experiments and for Richard's expertise and help in
 operating the motion capture system and data processing. We would also like to
 thank the Dutch bicycle manufacturer, Batavus, for supplying the bicycles.
 \end{acknowledgements}
-
-%\section{Section title}
-%\label{sec:1}
-%Text with citations \cite{RefB} and \cite{RefJ}.
-%\subsection{Subsection title}
-%\label{sec:2}
-%as required. Don't forget to give each section
-%and subsection a unique label (see Sect.~\ref{sec:1}).
-%\paragraph{Paragraph headings} Use paragraph headings as needed.
-%\begin{equation}
-%a^2+b^2=c^2
-%\end{equation}
-
-% For one-column wide figures use
-%\begin{figure}
-% Use the relevant command to insert your figure file.
-% For example, with the graphicx package use
-%  \includegraphics{example.esp}
-% figure caption is below the figure
-%\caption{Please write your figure caption here}
-%\label{fig:1}       % Give a unique label
-%\end{figure}
-%
-% For two-column wide figures use
-%\begin{figure*}
-% Use the relevant command to insert your figure file.
-% For example, with the graphicx package use
-%  \includegraphics[width=0.75\textwidth]{example.eps}
-% figure caption is below the figure
-%\caption{Please write your figure caption here}
-%\label{fig:2}       % Give a unique label
-%\end{figure*}
-%
-% For tables use
-%\begin{table}
-% table caption is above the table
-%\caption{Please write your table caption here}
-%\label{tab:1}       % Give a unique label
-% For LaTeX tables use
-%\begin{tabular}{lll}
-%\hline\noalign{\smallskip}
-%first & second & third  \\
-%\noalign{\smallskip}\hline\noalign{\smallskip}
-%number & number & number \\
-%number & number & number \\
-%\noalign{\smallskip}\hline
-%\end{tabular}
-%\end{table}
-
-
-%\begin{acknowledgements}
-%If you'd like to thank anyone, place your comments here
-%and remove the percent signs.
-%\end{acknowledgements}
-
-% BibTeX users please use one of
-%\bibliographystyle{spbasic}      % basic style, author-year citations
-%\bibliographystyle{spmpsci}      % mathematics and physical sciences
-%\bibliographystyle{spphys}       % APS-like style for physics
 \bibliographystyle{unsrt} % sorts ref list by appearance in paper
-\bibliography{bicycle}   % name your BibTeX data base
-
-% Non-BibTeX users please use
-%\begin{thebibliography}{}
-%
-% and use \bibitem to create references. Consult the Instructions
-% for authors for reference list style.
-%
-%\bibitem{RefJ}
-% Format for Journal Reference
-%Author, Article title, Journal, Volume, page numbers (year)
-% Format for books
-%\bibitem{RefB}
-%Author, Book title, page numbers. Publisher, place (year)
-% etc
-%\end{thebibliography}
+\bibliography{bicycle}
 \begin{appendices}
 \section{Inertial frames and configuration variables}
 \label{sec:inFrames}
@@ -944,7 +872,9 @@ wheel markers.
 The normal vector to the plane through the rear wheel center, seat post and the
 head tube center is
 \begin{equation}
-\hat{\mathbf{b}}_2=\frac{\mathbf{r}^{{m_{36}}/_{26}}\times\mathbf{r}^{{m_{33}}/_{26}}}{|\mathbf{r}^{{m_{36}}/_{26}}\times\mathbf{r}^{{m_{33}}/_{26}}|}
+\hat{\mathbf{b}}_2=
+\frac{\mathbf{r}^{{m_{36}}/_{26}}\times\mathbf{r}^{{m_{33}}/_{26}}}
+{|\mathbf{r}^{{m_{36}}/_{26}}\times\mathbf{r}^{{m_{33}}/_{26}}|}
 \label{eq:b2}
 \end{equation}
 The heading vector of the rear frame is then
@@ -1003,7 +933,9 @@ The handlebar/fork frame rotates around $\hat{\mathbf{d}}_3=\hat{\mathbf{e}_3}$
 and then $\hat{\mathbf{e}}_1=\hat{\mathbf{e}}_3\times\hat{\mathbf{e}}_2$. The
 instantaneous rear wheel radius is
 \begin{equation}
-    r_\mathbf{R}=-\frac{\mathbf{r}^{{m_{36}}/{n_o}}\cdot\hat{\mathbf{n}}_3}{\hat{\mathbf{b}}_3\cdot\hat{\mathbf{n}}_3}\textrm{.}
+    r_\mathbf{R}=
+    -\frac{\mathbf{r}^{{m_{36}}/{n_o}}\cdot\hat{\mathbf{n}}_3}
+    {\hat{\mathbf{b}}_3\cdot\hat{\mathbf{n}}_3}\textrm{.}
 \label{eq:rr}
 \end{equation}
 This is used to formulate the vector to the rear wheel contact point Eq.
@@ -1013,7 +945,8 @@ This is used to formulate the vector to the rear wheel contact point Eq.
 \label{eq:r39}
 \end{equation}
 This now allows us to calculate six of the eight configuration variables of the
-bicycle as a function of time.
+bicycle as a function of time ($q_5$ and $q_8$ are the rear and front wheel
+rotations, respectively).
 \begin{equation}
     \textrm{Distance to the ground contact point: }q_1 = \mathbf{r}^{{m_{39}}/{n_o}}\cdot\hat{\mathbf{n}_1}
 \label{eq:q1}
@@ -1040,5 +973,3 @@ bicycle as a function of time.
 \end{equation}
 \end{appendices}
 \end{document}
-% end of file template.tex
-
