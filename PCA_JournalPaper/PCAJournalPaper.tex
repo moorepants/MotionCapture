@@ -124,7 +124,7 @@ set organized by the variance associated with the principal components. In this
 paper, these principal components were used to characterize various distinct
 kinematic motions that occur during stabilization with and without pedaling.
 These motions were grouped on the basis of correlation and conclusions were
-drawn about which motions are candidates for stabilization related control
+drawn about which motions are candidates for stabilization-related control
 actions.
 \keywords{bicycle \and principal component analysis \and motion capture \and human control}
 % \PACS{PACS code1 \and PACS code2 \and more}
@@ -137,9 +137,9 @@ Much progress has been made in understanding the rigid body dynamics of an
 uncontrolled bicycle~\cite{Meijaard2007} and various control schemes have been
 explored for tracking purposes~\cite{Peterson2008a,Schwab2008,Sharp2008a}, but
 little is understood about how a bicyclist actually stabilizes a bicycle during
-normal riding. A bicycle and rider system is unique among vehicles in the fact
+normal riding. A bicycle and rider system is unique among vehicles in
 that the rider is from 80 to 90 percent of the total mass of the system, the
-system is laterally unstable and that the rider is flexibly coupled to the
+system is laterally unstable, and the rider is flexibly coupled to the
 bicycle in such a way that many body motions can be used as control inputs.
 Previous research into realistic bicycle control has focused on both steering
 and rider lean as control inputs, but there has been no experimental
@@ -149,7 +149,7 @@ treadmill~\cite{Kooijman2009a} show that the rider moves the upper body very
 little when performing normal maneuvers and that the bicyclist may in fact
 primarily use steering input for control. This corresponds well with the fact
 that control by leaning requires high gains compared to the gains required for
-steering when employing a optimal control strategy on a
+steering when employing optimal control strategy on a
 model~\cite{Peterson2008a,Schwab2008,Sharp2008a}. The observations also
 revealed
 that the rider may use other control inputs such as drastic knee movements at
@@ -168,7 +168,7 @@ treadmill. Cyclic motions, such as pedaling, are easily identified and
 separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
 candidates for control inputs. This will be valuable for design of a realistic
-biomechanical based control system of a bicycle rider, among other things.
+biomechanical-based control system of a bicycle rider, among other things.
 \section{Experiments}
 \label{sec:exp}
 To test our hypotheses, three riders performed a set of stability tasks in a
@@ -246,13 +246,13 @@ motions of the rider.
 
 The stability tasks were designed such that the rider would ride at a constant speed
 within the range of 2 to 30 km/h. The bicyclists were told to maintain an
-upright straight ahead course on the treadmill and to look into the distance,
+upright straight-ahead course on the treadmill and to look into the distance,
 with exception of the line tracking task. The bicyclists were instructed to
-bicycle comfortably at the designated speed and the data recording was started
+bicycle comfortably at the designated speed and data recording was started
 at random. In all cases the subject rode at the set speed until comfortable,
 then data was taken for 60 seconds at a 100 hertz sampling rate. Each test was
-performed on each bicycle with each rider. The following list gives the various
-tests and their descriptions:
+performed on each bicycle with each rider. The following list describes the various
+tests:
 
 \begin{description}[Without pedaling]
  \item[Normal pedaling] The subject was instructed to simply stabilize the
@@ -269,7 +269,7 @@ tests and their descriptions:
      bicycle was fixed longitudinally relative to the treadmill and no pedaling
      was required. The rider kept the feet in the same position throughout the
      task.
- \item[No-hands] The rider stabilized the bicycle without using steering for
+ \item[No-hands] The riders stabilized the bicycle without using steering for
      control. They were instructed to keep their hands on their hips while
      bicycling. The rider started at 30 km/h and decreased in 5 km/h increments
      through 20 km/h and thereafter the speeds were decreased in 1 or 2 km/h
@@ -282,7 +282,7 @@ tests and their descriptions:
 These tasks were designed with the intent to answer several questions:
 \begin{enumerate}
     \item What upper body motions are used while bicycling?
-    \item How does the system motion change with respect to change in forward speed?
+    \item How does the system motion change with respect to changes in forward speed?
     \item How does pedaling influence the control actions?
     \item Can the open loop rigid body dynamics be detected in the controlled state?
     \item What does the rider do differently to control the bicycle when riding no-hands?
@@ -333,7 +333,7 @@ detected we used the relative location of the remaining markers to reconstruct
 the missing marker. The gaps in the data of the markers on the human were
 repaired by fitting a cubic spline through the data. The spline estimated the
 marker coordinates during the gaps. We only used the splined data if the gaps
-were less than 10 time steps, or 0.1 sec, otherwise the trials were discarded.
+were less than 10 time steps, or 0.1 sec; otherwise the trials were discarded.
 
 \subsection{Relative motion}
 \label{sec:relativeMotion}
@@ -516,7 +516,7 @@ identification of motion: the principal components $\mathbf{v}_i$ and the
 corresponding coefficients $a_{ij}$. The principal components represent linear
 trajectories of the markers and the coefficients show how the markers follow
 the trajectories with time. We began processing the data by reviewing each
-principal component of each trial in the GUI and noting down what type of
+principal component of each trial in the GUI and noting what type of
 motion we saw Tab. (\ref{tab:trialDesc}). These descriptions were subjective
 because we grouped marker movement based on our preconceived understanding of
 rider and bicycle motion. Some of the components displayed motions that were not
@@ -525,7 +525,7 @@ bounce. This is possible when examining a single component but when
 superimposed over the rest of the components the unrealistic motions are not
 present. Furthermore, for each component we examined amplitude and frequency
 content of the associated coefficients $a_{ij}$ as shown in Figures
-(\ref{fig:coef3062}) and (\ref{fig:fft3062}) and noted down the shape of the
+(\ref{fig:coef3062}) and (\ref{fig:fft3062}) and noted the shape of the
 frequency spectrum and the
 frequencies at any distinct spikes.
 
@@ -572,15 +572,15 @@ frequencies at any distinct spikes.
     (0.28hz) determined from Fig. (\ref{fig:eigPlot}) at this forward speed .}
     \label{fig:fft3062}
 \end{figure}
-Several conclusions can be drawn from examining the coefficient data. First of
-all, some of the components are linked by the frequencies of the coefficients
-and describe an identifiable motion. The most obvious being that the vertical
-and horizontal pedaling components make up the circular pedaling motion. They
-both vary periodically and have a dominant frequency which is defined by the
+Several conclusions can be drawn from examining the coefficient data. First,
+some of the components are linked by the frequencies of the coefficients
+and describe an identifiable motion. The most obvious of these is that the vertical
+and horizontal pedaling components make up the circular pedaling motion.
+Both vary periodically and have a dominant frequency which is defined by the
 cadence. In the example trial, Tab. (\ref{tab:trialDesc}), the upper body
-motions are also linked to the pedaling. Components 8 and 9 are both based
-around a frequency that is twice the pedaling frequency which may be due to the
-forces created at each pedal stroke. Component 6 seems to be the result of a
+motions are also linked to the pedaling. Components 8 and 9 both correspond to
+a frequency that is twice the pedaling frequency, which may be due to the
+forces created during each pedal stroke. Component 6 seems to be the result of a
 bad marker signal. Components 5 and 7 are interesting because they display
 motions of the bicycle that are not dominated by the pedaling frequency and may
 be candidate control motions. The percentage variance of each component gives
@@ -614,7 +614,7 @@ components. These motions, illustrated in Fig. (\ref{fig:motions}), are:
         to the rear frame and was always linked with the horizontal pedaling
         component, Fig. (\ref{fig:lean}).
     \item[Twist] The shoulders rotate about the torso axis. This was linked to
-        components that contained steering motions both random and at the
+        components that contained steering motions, both random and at the
         pedaling frequency, Fig. (\ref{fig:twist}).
     \item[Bounce] The knee markers bounce up and down, the back straightens and
         the head nods at twice the pedaling frequency, Fig.
@@ -637,10 +637,10 @@ components. These motions, illustrated in Fig. (\ref{fig:motions}), are:
         \subfloat[]{\label{fig:bounce}\includegraphics[width=20mm]{figures/bounce.pdf}}\qquad
         \subfloat[]{\label{fig:knees}\includegraphics[width=20mm]{figures/knees.pdf}}
     \end{center}
-    \caption{Diagrams of the common motions. (a) Top view of the bicycle steer
-    and roll, (b) the bicycle yaw, (c) the horizontal and vertical components
-    of pedaling, (d) the spine bend, (e) rider lean, (f) top view of the rider
-    twist, (g) knee bounce and (h) two knee motions. All but the pedaling are
+    \caption{Diagrams of the common motions. (a) Top view of bicycle steer
+    and roll, (b) bicycle yaw, (c) horizontal and vertical components
+    of pedaling, (d) spine bend, (e) rider lean, (f) top view of rider
+    twist, (g) knee bounce and (h) two knee motions. All but pedaling (c) are
     exaggerated for clarity.}
     \label{fig:motions}
 \end{figure}
@@ -768,14 +768,14 @@ class. Also interesting is that unlike in the normal pedaling situation, the
 Knee motion percentage does not increase at low speeds.
 
 Figure (\ref{towingsteerangle}) shows the bicycle rigid body steer angle
-frequency-amplitude plot for different speeds. Compared to the normal pedaling
+frequency-amplitude plot for different speeds. Compared to normal pedaling,
 the amplitudes are about half the size at the low speeds and one tenth the size
 at high speeds, indicating that smaller steering angles were made. The
 frequency content now also shows a much wider, flatter spectrum compared to
 normal pedaling. At 10 and 15 km/h the frequency with the largest amplitude is
 near the open loop weave eigenfrequency. However, at the other speeds this is
 not the case, once again indicating that the rigid body open loop weave
-eigenfrequency is not the frequency in which the bicycle is controlled.
+eigenfrequency is not the frequency at which the bicycle is controlled.
 \begin{figure}[tbp]
     \centering
         \includegraphics[width=\textwidth]{figures/steerangletowing.pdf}\\
@@ -884,7 +884,7 @@ unit vectors define a reference frame that leans and yaws with the rear frame.
 We assumed that the rear frame pitch is negligible. The marker locations of the
 rider can now be expressed in the $\mathbf{B}$ frame with reference to a point
 on the rear frame $m_{36}$, Eq. (\ref{eq:wrtRear}), and these were used in the
-PCA of the rider only markers.
+PCA of the rider-only markers.
 \begin{equation}
     \mathbf{r}^{{m_{k}}/m_{36}}=
     (\mathbf{r}^{{m_{k}}/m_{36}}\cdot\hat{\mathbf{b}}_1)\hat{\mathbf{b}}_1+
@@ -894,7 +894,8 @@ PCA of the rider only markers.
 \end{equation}
 A reference frame $\mathbf{D}$ that is aligned with the steering axis of the
 rear frame can be formulated by rotation about the $\hat{\mathbf{b}}_2$ axis
-through the steer axis angle $\lambda$ which is measured from each bicycle.
+through the steer axis angle $\lambda$, which is measured from each
+bicycle~\cite{Moore2009a}.
 \begin{equation}
     \mathbf{D}=
     \left[
@@ -922,7 +923,7 @@ through the steer axis angle $\lambda$ which is measured from each bicycle.
 \label{eq:Dframe}
 \end{equation}
 The handlebar/fork inertial frame $\mathbf{E}$ is then calculated by defining
-the $\hat{\mathbf{e}}_2$ to be aligned with front wheel axle Eq.
+$\hat{\mathbf{e}}_2$ to be aligned with the front wheel axle Eq.
 (\ref{eq:e2}).
 \begin{equation}
     \hat{\mathbf{e}}_2=\frac{\mathbf{r}^{{m_{21}}/{n_o}}-\mathbf{r}^{{m_{27}}/{n_o}}}
