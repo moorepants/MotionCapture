@@ -1,44 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This is a general template file for the LaTeX package SVJour3
-% for Springer journals.          Springer Heidelberg 2006/03/15
-%
-% Copy it to a new file with a new name and use it as the basis
-% for your article. Delete % signs as needed.
-%
-% This template includes a few options for different layouts and
-% content for various journals. Please consult a previous issue of
-% your journal as needed.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% First comes an example EPS file -- just ignore it and
-% proceed on the \documentclass line
-% your LaTeX will extract the file if required
-%\begin{filecontents*}{example.eps}
-%!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 19 19 221 221
-%%CreationDate: Mon Sep 29 1997
-%%Creator: programmed by hand (JK)
-%%EndComments
-%gsave
-%newpath
-%  20 20 moveto
-%  20 220 lineto
-%  220 220 lineto
-%  220 20 lineto
-%closepath
-%2 setlinewidth
-%gsave
-%  .4 setgray fill
-%grestore
-%stroke
-%grestore
-%\end{filecontents*}
-%
-%\documentclass{svjour3}                     % onecolumn (standard format)
 \documentclass[smallextended]{svjour3}     % onecolumn (second format)
-%\documentclass[twocolumn]{svjour3}         % twocolumn
 %
 \smartqed  % flush right qed marks, e.g. at end of proof
 %
@@ -47,8 +7,7 @@
 \usepackage{mathptmx}      % use Times fonts if available on your TeX system
 %
 % insert here the call for the packages your document requires
-%\usepackage{latexsym}
-% etc.
+
 \usepackage{subfig}
 \usepackage[title]{appendix}
 
@@ -177,8 +136,8 @@ with a motion capture system. The tasks were performed on a $3\times5$ meter
 treadmill Fig. (\ref{fig:treadmill}) capable of belt speeds up to 35 km/h. The
 treadmill was chosen because the envelope of space was suitable for the motion
 capture system and it eliminated any disturbances such as wind, rough ground,
-and obstacles.  We chose three male riders of similar age [23, 26, 31 years] and
-build [height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)]. We also used two
+and obstacles.  We chose three male riders of similar age [31, 23, 26 years] and
+build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72 kg)]. We also used two
 different Dutch bicycles: a 2008 Batavus
 Browser with a 3 speed hub and a 2008 Batavus Stratos Deluxe with a 7 speed
 hub. The Browser is described by the manufacturer as ``stable'' and the Stratos
@@ -190,12 +149,12 @@ Deluxe as ``nervous.''
     \label{fig:treadmill}
 \end{figure}
 
-We made use of the Optotrack Certus Motion Capture
+We made use of the Optotrak Certus Motion Capture
 System~\cite{NorthernDigitalIncorporated2009} to record the motion of the
 bicycle and rider during the stability tasks. The system is based on active
 infrared emitting markers that are placed on the moving bodies and connected to
-a central control unit. Each marker emits an infrared signal at a different
-frequency and the infrared pulses are captured by camera modules each
+a central control unit. Each marker emits a sequential infrared signal and the
+infrared pulses are captured by camera modules each
 containing three cameras. The accuracy of the three dimensional measurements is
 $\pm0.15$ mm~\cite{NorthernDigitalIncorporated2009}. We used three camera units
 and each of these units consists of
@@ -310,7 +269,8 @@ data was used to calculate eigenvalues and eigenvectors of the uncontrolled open
     \begin{center}
         \includegraphics[width=0.7\textwidth]{figures/eigPlot.pdf}
     \end{center}
-    \caption{Eigenvalues of the Browser bicycle with the third rider as a
+    \caption{Eigenvalues of the Browser bicycle with the third rider rigidly
+    attached as a
     function of speed. Note that the initially unstable weave motion becomes
     stable above 16 km/h, the weave speed.}
     \label{fig:eigPlot}
@@ -338,8 +298,8 @@ were less than 10 time steps, or 0.1 sec; otherwise the trials were discarded.
 \subsection{Relative motion}
 \label{sec:relativeMotion}
 We were interested in the analysis of three different marker combinations: the
-bicycle, the rider and the bicycle/rider. The motion of the bicycle and the
-bicycle/rider were calculated with reference to the $\mathbf{N}$ inertial
+bicycle alone, the rider alone and the bicycle and rider together. The motion of the bicycle and the
+bicycle-rider were calculated with reference to the $\mathbf{N}$ inertial
 frame\footnote[1]{The $\mathbf{N}$ frame is used instead of the $\mathbf{M}$ frame
 comply with the vehicle coordinate standards used in \cite{Meijaard2007}. See
 Appendix~\ref{sec:inFrames} for the derivation.} and the motion of the rider was calculated
@@ -386,7 +346,9 @@ $2$, $\ldots$, $n$. Each marker has three coordinates so there are a total of
 $m=3l$ coordinates $i=1$, $2$, $\ldots$, $m$. The coordinates at each time step
 can be collected in vector $\mathbf{p}_j$.
 \begin{displaymath}
-    \mathbf{p}_j^T=\left[x_{1j}\quad\ldots\quad x_{lj}\quad y_{1j}\quad\ldots\quad y_{lj}\quad z_{1j}\quad\ldots\quad z_{lj}\right]=\left[p_{1j}\quad p_{2n}\quad\ldots\quad    p_{mj}\right]
+    \mathbf{p}_j^T
+    =\left[x_{1j}\quad\ldots\quad x_{lj}\quad y_{1j}\quad\ldots\quad y_{lj}\quad z_{1j}\quad\ldots\quad z_{lj}\right]
+    =\left[p_{1j}\quad p_{2j}\quad\ldots\quad    p_{mj}\right]
 \end{displaymath}
 We can organize these coordinate vectors into a matrix, $\mathbf{P}$, where the
 rows, $i$, map a single coordinate of a marker through $n$ time steps.
@@ -400,8 +362,8 @@ rows, $i$, map a single coordinate of a marker through $n$ time steps.
 
 The principal components were calculated for the three marker combinations as
 described earlier where $n=60\cdot100=6000$ time steps. The number of rows of
-$\mathbf{P}$ were ($m=3\cdot31=93$), ($m=3\cdot11=33$) and ($m=3\cdot21=63$)
-for the bicycle/rider, the bicycle alone and the rider alone, respectively.
+$\mathbf{P}$ were ($m=3\cdot31=93$), ($m=3\cdot11=33$) and ($m=3\cdot20=60$)
+for the bicycle-rider, the bicycle alone and the rider alone, respectively.
 
 One method of determining the principal components is to calculate the
 eigenvectors of the covariance matrix of the mean-subtracted data. We begin by
@@ -481,7 +443,7 @@ cumulative percentage of variance of the principal components, $g_k$.
 \end{equation}
 Highly correlated data will show that even when $k<<m$, $g_k$ is close to
 100\%. Using 10 components $g_{10}$ covers 100\% ($\sigma=2\cdot10^{-14}$\%) of
-the variation in the data for the bicycle, rider and bicycle/rider. The matrix
+the variation in the data for the bicycle, rider and bicycle-rider. The matrix
 $\mathbf{A}$ can then be reduced to a $k\times n$ matrix and eigenvectors
 greater than $\mathbf{v}_k$ can be eliminated.
 
@@ -489,7 +451,7 @@ greater than $\mathbf{v}_k$ can be eliminated.
 \label{sec:dataVis}
 We developed a graphical user interface, ``GUI'',  in \textsc{Matlab} that easily allows
 different trials to be compared with one another Fig. (\ref{fig:GUI}). The
-program loads in two different trials along with information on the trial. A
+program loads in two different trials along with information on each trial. A
 graphical representation of the rider and bicycle are displayed in two adjacent
 screens and can be viewed from multiple perspectives. The animations of the
 runs can be played at different speeds, rewound and fast forwarded. The
@@ -640,7 +602,7 @@ components. These motions, illustrated in Fig. (\ref{fig:motions}), are:
     \caption{Diagrams of the common motions. (a) Top view of bicycle steer
     and roll, (b) bicycle yaw, (c) horizontal and vertical components
     of pedaling, (d) spine bend, (e) rider lean, (f) top view of rider
-    twist, (g) knee bounce and (h) two knee motions. All but pedaling (c) are
+    twist, (g) knee bounce and (h) two lateral knee motions. All but pedaling (c) are
     exaggerated for clarity.}
     \label{fig:motions}
 \end{figure}
@@ -674,18 +636,22 @@ of the motion class.
 
 The correlated coefficients were used to form six different classes of motions,
 each made up of combinations of the previously described motions, with
-reference to Fig. (\ref{fig:motions}):
-\begin{description}[Steer-Yaw-Roll]
-    \item[Drift] Drift.
-    \item[Pedaling] Pedaling (\ref{fig:pedaling}), Bend (\ref{fig:bend}), Lean
-        (\ref{fig:lean}), Twist (\ref{fig:twist}).
-    \item[Steer-Yaw-Roll] Steer and Roll (\ref{fig:steerRoll}), Yaw
-        (\ref{fig:yaw}).
-    \item[Bounce] Bounce (\ref{fig:bounce}).
-    \item[Knees] Knees (\ref{fig:knees}).
-    \item[Others] Head and components that showed noise of some
-    sort.
-\end{description}
+reference to Fig. (\ref{fig:motions}):\\
+\\
+\begin{tabular}[]{ll}
+    Class Name & Description\\
+    \hline
+    Drift & Drift\\
+    Pedaling & Pedaling (\ref{fig:pedaling}), Bend (\ref{fig:bend}), Lean
+        (\ref{fig:lean}), Twist (\ref{fig:twist})\\
+    Steer-Yaw-Roll & Steer and Roll (\ref{fig:steerRoll}), Yaw
+        (\ref{fig:yaw})\\
+    Bounce & Bounce (\ref{fig:bounce})\\
+    Knees & Knees (\ref{fig:knees})\\
+    Other & Head and components that showed noise of some
+    sort
+\end{tabular}\\
+\\
 In most cases the correlated coefficients described a single class. However, in
 some cases this was not the case and the coefficients were used to describe
 more than one class. An example is that at low speed the components containing
@@ -706,7 +672,8 @@ configuration variable time histories and frequency content explicitly.
 \subsection{Characterization of motions during normal pedaling}
 \label{sec:normalPed}
 Figure (\ref{jellybean}) shows how the percentage of the four classes:
-Pedaling, Steer-Yaw-Roll, Bounce and Knees vary with speed. From the graph it
+Pedaling, Steer-Yaw-Roll, Bounce and Knees vary with speed for Rider 3 on the
+Batavus Browser bicycle. From the graph it
 is clear that at 10 km/h and higher speeds practically all the motion that is
 taking place is the pedaling motion class. Below 10 km/h, the Steer-Yaw-Roll
 class becomes increasingly active and the relative percentage of the motion
@@ -720,7 +687,7 @@ roughly remains constant at all speeds.
     \includegraphics[width=0.7\textwidth]{figures/pedaling4classes.pdf}
     \caption{The percentage of the motion from each of the four classes:
     Pedaling, Steer-Yaw-Roll, Bounce and Knees, at the different speeds when
-    the Drift and `Other' classes were removed from the results for normal
+    the Drift and Other classes were removed from the results for normal
     pedaling. The solid lines are scaled to 100\% (left axis), the dotted lines
     are scaled to 10\% (right axis).}
     \label{jellybean}
@@ -733,7 +700,7 @@ steering angle increases by 5000\% when the speed decreases from 30 km/h to 2
 km/h. Figure (\ref{pedalsteerangle}) also shows the open loop, rigid rider,
 weave eigenfrequency for each speed obtained from Fig. (\ref{fig:eigPlot}).
 Apparently the open loop eigenfrequency is not a frequency in which the
-bicycle/rider operates.
+bicycle-rider operates.
 \begin{figure}[tb]
     \centering
         \includegraphics[width=\textwidth]{figures/steerangle.pdf}\\
@@ -746,10 +713,11 @@ bicycle/rider operates.
 \subsection{Characterization of motions without pedaling}
 \label{sec:noPed}
 At normal pedaling, all motions, including the control tasks, are dominated by
-the pedaling motions. Therefore we also looked at the motions bicycle/rider
+the pedaling motions. Therefore we also looked at the motions bicycle-rider
 system without the influence of pedaling. Figure (\ref{missjellybean}) shows
 how the percentage of the motion caused by Steer-Yaw-Roll, Bounce and Knees
-varies with speed. Since the bicycle is towed and the riders feet remain in the
+varies with speed for Rider 3 on the Batavus Browser bicycle. Since the bicycle
+is towed and the riders feet remain in the
 same, constant, position relative to bicycle, there is no pedaling class
 present in analysis. Furthermore, no bend, lean or twist motions were detected
 during the experiments.
@@ -758,7 +726,7 @@ during the experiments.
         \includegraphics[width=0.7\textwidth]{figures/towing3classes.pdf}\\
     \caption{The percentage of the motion from each of the three classes:
     Steer-Yaw-Roll, Bounce and Knees, at the speeds at which the Drift
-    and `Other' classes were removed from the results for trials without
+    and Other classes were removed from the results for trials without
     pedaling. The solid lines are scaled to 100\% (left axis), the dotted lines
     are scaled to 20\% (right axis).}
     \label{missjellybean}
@@ -828,7 +796,7 @@ thank the Dutch bicycle manufacturer, Batavus, for supplying the bicycles.
 The transformation from marker coordinates to rigid body inertial frames and
 configuration variables shown in Fig. (\ref{fig:frames}) is described here. A
 reference frame, $\mathbf{N}$, with origin $n_o$ corresponding with the
-benchmark bicycle~\cite{Meijaard2007} is defined with respect to the Optotrack
+benchmark bicycle~\cite{Meijaard2007} is defined with respect to the Optotrak
 reference frame, $\mathbf{M}$, Eq. (\ref{eq:NtoM}).
 \begin{equation}
     \mathbf{N}=
@@ -882,9 +850,13 @@ $\hat{\mathbf{b}}_1=\hat{\mathbf{b}}_2\times\hat{\mathbf{n}}_3$ and
 $\hat{\mathbf{b}}_3=\hat{\mathbf{b}}_1\times\hat{\mathbf{b}}_2$ follows. These
 unit vectors define a reference frame that leans and yaws with the rear frame.
 We assumed that the rear frame pitch is negligible. The marker locations of the
-rider can now be expressed in the $\mathbf{B}$ frame with reference to a point
-on the rear frame $m_{36}$, Eq. (\ref{eq:wrtRear}), and these were used in the
-PCA of the rider-only markers.
+rider can now be expressed relative to the bicycle's inertial frame with reference to a point
+on the bicycle frame $m_{36}$. Eq. (\ref{eq:wrtRear}) shows that the vector from
+any marker on the rider relative to $m_{36}$ can be expressed in the bicycle
+reference frame, $\mathbf{B}$, rather than the inertial frame, $\mathbf{N}$.
+This formulation was used in the
+PCA of the rider-only markers to look specifically at rider motion relative to
+the bicycle.
 \begin{equation}
     \mathbf{r}^{{m_{k}}/m_{36}}=
     (\mathbf{r}^{{m_{k}}/m_{36}}\cdot\hat{\mathbf{b}}_1)\hat{\mathbf{b}}_1+
