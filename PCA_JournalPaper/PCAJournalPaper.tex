@@ -671,21 +671,25 @@ specific motion characterizations. This allowed us to investigate the bicycle's
 configuration variable time histories and frequency content explicitly.
 \subsection{Characterization of motions during normal pedaling}
 \label{sec:normalPed}
-Figure (\ref{jellybean}) shows how the percentage of the four classes:
-Pedaling, Steer-Yaw-Roll, Bounce and Knees vary with speed for Rider 3 on the
-Batavus Browser bicycle. From the graph it
+Figure (\ref{jellybean}) shows how the relative percent variance of the four classes:
+Pedaling, Steer-Yaw-Roll, Bounce and Knees varies with speed for Rider 3 on the
+Batavus Browser bicycle. The percentage is the average of two runs at speeds 5 km/h and
+above. From the graph it
 is clear that at 10 km/h and higher speeds practically all the motion that is
 taking place is the pedaling motion class. Below 10 km/h, the Steer-Yaw-Roll
 class becomes increasingly active and the relative percentage of the motion
 taking place in the pedaling class drops. Also at speeds below 10 km/h the
 lateral knee motion (Knees) class percentage increases with decreasing speed.
 The increase is not as significant as that of the Steer-Yaw-Roll class
-(increase to roughly 5\% at 2 km/h), but it is certainly visible. The Bounce
+(increase to roughly 5\% at 2 km/h), but it is certainly visible. The spike at
+4 km/h can be attributed to the fact that the classes may contain higher
+variance motions because the classification method is based on principal
+components that are not necessarily consistent between runs. The Bounce
 roughly remains constant at all speeds.
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/pedaling4classes.pdf}
-    \caption{The percentage of the motion from each of the four classes:
+    \caption{The relative percent variance of the four classes:
     Pedaling, Steer-Yaw-Roll, Bounce and Knees, at the different speeds when
     the Drift and Other classes were removed from the results for normal
     pedaling. The solid lines are scaled to 100\% (left axis), the dotted lines
@@ -715,7 +719,7 @@ bicycle-rider operates.
 At normal pedaling, all motions, including the control tasks, are dominated by
 the pedaling motions. Therefore we also looked at the motions bicycle-rider
 system without the influence of pedaling. Figure (\ref{missjellybean}) shows
-how the percentage of the motion caused by Steer-Yaw-Roll, Bounce and Knees
+how the percent variance of by Steer-Yaw-Roll, Bounce and Knees
 varies with speed for Rider 3 on the Batavus Browser bicycle. Since the bicycle
 is towed and the riders feet remain in the
 same, constant, position relative to bicycle, there is no pedaling class
@@ -724,7 +728,7 @@ during the experiments.
 \begin{figure}[tb]
     \centering
         \includegraphics[width=0.7\textwidth]{figures/towing3classes.pdf}\\
-    \caption{The percentage of the motion from each of the three classes:
+    \caption{The percent variance of each of the three classes:
     Steer-Yaw-Roll, Bounce and Knees, at the speeds at which the Drift
     and Other classes were removed from the results for trials without
     pedaling. The solid lines are scaled to 100\% (left axis), the dotted lines
@@ -733,7 +737,11 @@ during the experiments.
 \end{figure}
 It is clear that at all speeds most motion takes place in the Steer-Yaw-Roll
 class. Also interesting is that unlike in the normal pedaling situation, the
-Knee motion percentage does not increase at low speeds.
+Knee motion percentage does not increase at low speeds. This may mean that the
+lateral knee motion is connected to pedaling is some way. Like the pedaling
+case, the Bounce and Knees classes may contain different principal components
+and a statistical approach to evaluate the percent variance of the classes
+would provide clearer results.
 
 Figure (\ref{towingsteerangle}) shows the bicycle rigid body steer angle
 frequency-amplitude plot for different speeds. Compared to normal pedaling,
