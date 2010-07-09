@@ -523,6 +523,13 @@ for i=1:15
     end 
 end
 
+for i=1:length(speed):
+    if speed(i) == 2 | speed(i) == 3 | speed(i) == 4
+        avgpercentclass(:,i-11) = percentclass(:,i);
+    else
+        avgpercentclass(:,i+3) = mean([percentclass(:,i)
+    
+
 [AX,H1,H2]=plotyy(speed,percentclass([1 2 3 6],:),speed,percentclass([4 5],:));
 axis(AX(2),[0 30 0 1])
 set(H1,'LineStyle','-')
