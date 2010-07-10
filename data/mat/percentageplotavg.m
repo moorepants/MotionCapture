@@ -1,5 +1,5 @@
 %class percentage plot program
-nrx=2                                       %1 = pedaling, 2 = towing 3 = no hands
+nrx=1                                       %1 = pedaling, 2 = towing 3 = no hands
 % speeds in the different measurements
 speed=[5 10 15 20 25 30 30 25 20 15 10 5 4 3 2];
 speednh=[30 25 20 18 16 15 14];
@@ -576,20 +576,20 @@ set(H3(2),'marker', 'o','Color',[0 0 0],'linewidth',2)
 %set(H3(3),'marker', 'd');
 %set(H3(4),'marker', 'v')
 set(H4,'LineStyle',':')
-set(H4(1),'marker','s','Color',[0.6 0.6 0.6],'linewidth',2)
-set(H4(2),'marker','o','Color',[0.6 0.6 0.6],'linewidth',2)
+set(H4(1),'marker','s','Color',[0.4 0.4 0.4],'linewidth',2)
+set(H4(2),'marker','o','Color',[0.4 0.4 0.4],'linewidth',2)
 
 Aleg=legend([H3(1),H3(2),H4(1), H4(2)],'Pedaling','Steer-Yaw-Roll','Bounce','Knees','Location','East')
 %bleg=legend(H4,'Knee Bounce','Lateral Knee','boxoff')
 axis(AX1(2),[0 30 0 10])
-set(AX1(2),'YColor',[0.6 0.6 0.6])
+set(AX1(2),'YColor',[0.4 0.4 0.4])
 set(Aleg, 'Box', 'off')
 %set(Bleg, 'Box', 'off')
 set(H3,'LineStyle','-')
 set(H4,'LineStyle',':')
 xlabel('Speed [km/h]')
 ylabel(AX1(1),'Percentage [%]')
-ylabel(AX1(2),'Percentage [%]','Color',[0.6 0.6 0.6])
+ylabel(AX1(2),'Percentage [%]','Color',[0.4 0.4 0.4])
 %title('Browser Normal Pedaling, Longitudenal/Lateral and Other removed ')
 
 
@@ -659,8 +659,8 @@ speed=[2 3 4 5 10 15 20 25 30];
 set(H7,'LineStyle','-')
 set(H7(1),'marker','s','Color',[0 0 0],'linewidth',2)
 set(H8,'LineStyle',':')
-set(H8(1),'marker','s','Color',[0.6 0.6 0.6],'linewidth',2)
-set(H8(2),'marker','o','Color',[0.6 0.6 0.6],'linewidth',2)
+set(H8(1),'marker','s','Color',[0.4 0.4 0.4],'linewidth',2)
+set(H8(2),'marker','o','Color',[0.4 0.4 0.4],'linewidth',2)
 set(AX3, 'YColor', 'k')
 aleg=legend([H7(1),H8(1),H8(2)],'Steer-Yaw-Roll','Bounce','Knees','Location','West')
 %legend(H8,'Knee Bounce','Lateral Knee')
@@ -669,6 +669,6 @@ axis(AX3(1),[0 30 0 100])
 axis(AX3(2),[0 30 0 15])
 xlabel('Speed [km/h]')
 ylabel(AX3(1),'Percentage [%]','Color',[0 0 0])
-ylabel(AX3(2),'Percentage [%]','Color',[0.6 0.6 0.6])
+ylabel(AX3(2),'Percentage [%]','Color',[0.4 0.4 0.4])
 %title('Browser Towing, Longitudenal/Lateral and Other removed ')
 end
