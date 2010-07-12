@@ -52,7 +52,7 @@ qdDict = {}
 qddDict = {}
 nums = {}
 stats = {}
-condition = 'towing + nohands'
+condition = 'nohands'
 # for each unique speed
 for j, speed in enumerate(UniqueSpeeds):
     fstats = {}
@@ -74,8 +74,6 @@ for j, speed in enumerate(UniqueSpeeds):
         t5 = True #runInfo['rider'][runIndex] == 'Jason'
         if t1 and t2  and t3 and t4 and t5: # add the run in if all of the t's are true
             print 'Run number =', run, 'at speed', runInfo['speed'][runIndex], "and it's condition", runInfo['condition'][runIndex]
-            if speed == '10':
-                print 'this one is the bad one'
             NumInSet += 1
             # load the state data:
             qData = np.load('../data/npy/states/' + run + 'q.npz')
@@ -110,6 +108,14 @@ for j, speed in enumerate(UniqueSpeeds):
     if NumInSet == 0:
         pass
     else:
+        # remove any nan's from the data...this is a cheap fix for just the
+        # lean, i should look into
+        # it better than this
+        if speed == '2': #np.isnan(q[12].sum()):
+            print "this one has some nan's"
+            q = np.nan_to_num(q)
+            qd = np.nan_to_num(qd)
+            qdd = np.nan_to_num(qdd)
         qDict[speed] = q
         qdDict[speed] = qd
         qddDict[speed] = qdd
@@ -161,6 +167,7 @@ for i, name in enumerate(qName):
         filename = camelcase_nospace(condition) + camelcase_nospace(qName[i]) + k
         extension = '.png'
         plt.savefig(directory + filename + extension)
+        findmax = []
         # now modify the graph such that it reads the frequency spectrum
         for j, sp in enumerate(vInt): # for each speed in the current graph
             g = stats[str(sp)][k][:, i]
@@ -170,9 +177,10 @@ for i, name in enumerate(qName):
             bp['whiskers'][j*2+1].set_ydata(np.array([g[3], g[4]]))
             bp['caps'][j*2].set_ydata(np.array([g[0], g[0]]))
             bp['caps'][j*2+1].set_ydata(np.array([g[4], g[4]]))
+            findmax.append(g[4])
         # now fix the titles and labels
         plt.ylabel('Frequency [Hz]')
-        plt.ylim(0., 50.)
+        plt.ylim(0., np.max(np.round(np.ceil(findmax)/5.)*5))
         plt.gca().set_title(plt.gca().get_title() + ' Frequency Spectrum')
         plt.savefig(directory + filename + 'Freq' + extension)
 #plt.show()
