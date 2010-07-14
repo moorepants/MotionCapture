@@ -126,7 +126,8 @@ types of walking. We use similar methods for steady, normal bicycle riding on a
 treadmill. Cyclic motions, such as pedaling, are easily identified and
 separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
-candidates for control inputs. This will be valuable for design of a realistic
+candidates for control inputs. This will be valuable for our overall research
+goals that includes the design of a realistic
 biomechanical-based control system of a bicycle rider, among other things.
 \section{Experiments}
 \label{sec:exp}
@@ -144,7 +145,7 @@ hub. The Browser is described by the manufacturer as ``stable'' and the Stratos
 Deluxe as ``nervous.''
 \begin{figure}
     \centering
-        \includegraphics[width=\textwidth]{figures/treadmill.pdf}
+        \includegraphics[width=\textwidth]{treadmill.pdf}
     \caption{The $3\times5$ m treadmill at the Vrije Universiteit Amsterdam.}
     \label{fig:treadmill}
 \end{figure}
@@ -162,8 +163,8 @@ harnesses were built for both the rider and the bicycles to facilitate easy
 bicycle and rider exchange Fig.~(\ref{fig:markers}).
 \begin{figure}
     \centering
-        \subfloat[]{\label{fig:jodiBikeMarkers}\includegraphics[height=88mm]{figures/jodiBikeMarkers.pdf}}
-        \subfloat[]{\label{fig:jodiMarkers}\includegraphics[height=88mm]{figures/jodiMarkers.pdf}}
+        \subfloat[]{\label{fig:jodiBikeMarkers}\includegraphics[height=88mm]{jodiBikeMarkers.pdf}}
+        \subfloat[]{\label{fig:jodiMarkers}\includegraphics[height=88mm]{jodiMarkers.pdf}}
     \caption{(a) Rider 1 and the Batavus Stratos Deluxe with marker positions. (b) Body marker positions visible from the rear.}
     \label{fig:markers}
 \end{figure}
@@ -175,7 +176,7 @@ the three dimensional locations of 31 markers, 11 of which were located on the
 bicycle and 20 that mapped the rider Fig.~(\ref{fig:markerloc}).
 \begin{figure}
     \centering
-        \includegraphics[height=3.61in]{figures/markerloc.pdf}
+        \includegraphics[height=3.61in]{markerloc.pdf}
     \caption{Schematic of the marker positions. The rider and bicycle are colored light gray and dark gray, respectively.}
     \label{fig:markerloc}
 \end{figure}
@@ -266,7 +267,7 @@ data was used to calculate eigenvalues and eigenvectors of the uncontrolled open
 (\ref{fig:eigPlot}).
 \begin{figure}[tbp]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{figures/eigPlot.pdf}
+        \includegraphics[width=0.7\textwidth]{eigPlot.pdf}
     \end{center}
     \caption{Eigenvalues of the Browser bicycle with the third rider rigidly
     attached as a
@@ -317,7 +318,7 @@ the bicycle frame. The pitch of the bicycle frame ($q_6$) is assumed to be zero.
 Appendix~\ref{sec:inFrames}.
 \begin{figure}[tbp]
     \begin{center}
-        \includegraphics[width=3.85in]{figures/frames.pdf}
+        \includegraphics[width=3.85in]{frames.pdf}
     \end{center}
     \caption{Diagram of the bicycle's inertial frame $\mathbf{N}$, rear frame $\mathbf{B}$, front frame $\mathbf{E}$ and configuration variables.}
     \label{fig:frames}
@@ -460,7 +461,7 @@ Frequency and amplitude information for the temporal coefficients $a_{ij}$ can
 also be displayed for comparison.
 \begin{figure}[tbp]
     \begin{center}
-        \includegraphics[width=\textwidth]{figures/GUI.pdf}
+        \includegraphics[width=\textwidth]{GUI.pdf}
     \end{center}
     \caption{Screen shot of the \textsc{Matlab} graphical user interface (GUI)
     used to visualize principal components and compare between different
@@ -499,17 +500,17 @@ frequencies at any distinct spikes.
 	\hline\noalign{\smallskip}
         $i$ & \% Variance & Motion Description & Frequency Description\\
         \noalign{\smallskip}\hline\noalign{\smallskip}
-        1  & 45.50 & primarily longitudinal motion, some lateral & max amp=0.6m, most freq below 0.5Hz, tiny spike at 1.6Hz\\
-        2  & 29.39 & primarily lateral motion, some longitudinal, small feet motion & max amp=0.35m, little spike at 0.8Hz, most freq below 0.5Hz\\
+        1  & 45.50 & primarily longitudinal motion, some lateral & max amp = 0.6~m, most freq below 0.5~Hz, tiny spike at 1.6~Hz\\
+        2  & 29.39 & primarily lateral motion, some longitudinal, small feet motion & max amp = 0.35 m, little spike at 0.8~Hz, most freq below 0.5~Hz\\
         3  & 15.41 & vertical pedaling, slight spine bend, hip/head/shoulder
-            sway out of phase with pedaling & max amp=0.27m, large dominant spike at 0.8Hz, \\
-        4  & 8.27  & horizontal pedaling, head/shoulder sway & large dominant spike at 0.8Hz with 0.19m amp\\
-        5  & 0.82  & yaw, knees stay still & most freq below 1Hz, spike at 0.33Hz and 0.04m\\
-        6  & 0.27  & erratic left hand movement & max amp=0.018Hz, most freq below 2Hz\\
-        7  & 0.21  & steer, left hand movement, slight roll & most freq below 2Hz, spike at 0.33Hz and 1.58Hz\\
-        8  & 0.07  & knee and head bounce & dominant spike at 1.58Hz\\
-        9  & 0.04  & lateral knee movement, head jiggle & spikes at 1.58Hz and 2.37Hz, most freq below 2.5Hz\\
-        10 & 0.02  & head and knee jiggle & spikes at 1.58Hz and 3.17Hz, most freq below 3.5Hz\\
+            sway out of phase with pedaling & max amp = 0.27 m, large dominant spike at 0.8~Hz\\
+        4  & 8.27  & horizontal pedaling, head/shoulder sway & large dominant spike at 0.8~Hz with 0.19 m amp\\
+        5  & 0.82  & yaw, knees stay still & max amp = 0.04 m at 0.33~Hz, most freq below 1~Hz\\
+        6  & 0.27  & erratic left hand movement & max amp = 0.018 m, most freq below 2~Hz\\
+        7  & 0.21  & steer, left hand movement, slight roll & most freq below 2~Hz, spike at 0.33~Hz and 1.58~Hz\\
+        8  & 0.07  & knee and head bounce & dominant spike at 1.58~Hz\\
+        9  & 0.04  & lateral knee movement, head jiggle & spikes at 1.58~Hz and 2.37~Hz, most freq below 2.5~Hz\\
+        10 & 0.02  & head and knee jiggle & spikes at 1.58~Hz and 3.17~Hz, most freq below 3.5~Hz\\
 	\noalign{\smallskip}\hline
         \end{tabular}
     }
@@ -518,7 +519,7 @@ frequencies at any distinct spikes.
 
 \begin{figure}[tb]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/coef3062.pdf}
+        \includegraphics[width=0.75\textwidth]{coef3062.pdf}
     \end{center}
     \caption{Coefficients $a_{ij}$ versus time content of the first five
     principal components for normal pedaling at 10 km/h.}
@@ -526,7 +527,7 @@ frequencies at any distinct spikes.
 \end{figure}
 \begin{figure}[tb]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/fft3062.pdf}
+        \includegraphics[width=0.75\textwidth]{fft3062.pdf}
     \end{center}
     \caption{The frequency
     content of the first five principal components for normal pedaling at 10
@@ -591,15 +592,15 @@ components. These motions, illustrated in Fig. (\ref{fig:motions}), are:
 \end{description}
 \begin{figure}[tbp]
     \begin{center}
-        \subfloat[]{\label{fig:steerRoll}\includegraphics[width=20mm]{figures/rollSteer.pdf}}\qquad
-        \subfloat[]{\label{fig:yaw}\includegraphics[width=20mm]{figures/yaw.pdf}}\qquad
-        \subfloat[]{\label{fig:pedaling}\includegraphics[width=20mm]{figures/pedal.pdf}}\qquad
-        \subfloat[]{\label{fig:bend}\includegraphics[width=20mm]{figures/bend.pdf}}
+        \subfloat[]{\label{fig:steerRoll}\includegraphics[width=20mm]{rollSteer.pdf}}\qquad
+        \subfloat[]{\label{fig:yaw}\includegraphics[width=20mm]{yaw.pdf}}\qquad
+        \subfloat[]{\label{fig:pedaling}\includegraphics[width=20mm]{pedal.pdf}}\qquad
+        \subfloat[]{\label{fig:bend}\includegraphics[width=20mm]{bend.pdf}}
 
-        \subfloat[]{\label{fig:lean}\includegraphics[width=20mm]{figures/lean.pdf}}\qquad
-        \subfloat[]{\label{fig:twist}\includegraphics[width=20mm]{figures/twist.pdf}}\qquad
-        \subfloat[]{\label{fig:bounce}\includegraphics[width=20mm]{figures/bounce.pdf}}\qquad
-        \subfloat[]{\label{fig:knees}\includegraphics[width=20mm]{figures/knees.pdf}}
+        \subfloat[]{\label{fig:lean}\includegraphics[width=20mm]{lean.pdf}}\qquad
+        \subfloat[]{\label{fig:twist}\includegraphics[width=20mm]{twist.pdf}}\qquad
+        \subfloat[]{\label{fig:bounce}\includegraphics[width=20mm]{bounce.pdf}}\qquad
+        \subfloat[]{\label{fig:knees}\includegraphics[width=20mm]{knees.pdf}}
     \end{center}
     \caption{Diagrams of the common motions. (a) Top view of bicycle steer
     and roll, (b) bicycle yaw, (c) horizontal and vertical components
@@ -690,7 +691,7 @@ components that are not necessarily consistent between runs. The Bounce
 roughly remains constant at all speeds.
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/pedaling4classes.pdf}
+    \includegraphics[width=0.7\textwidth]{pedaling4classes.pdf}
     \caption{The relative percent variance of the four classes:
     Pedaling, Steer-Yaw-Roll, Bounce and Knees, at the different speeds when
     the Drift and Other classes were removed from the results for normal
@@ -710,7 +711,7 @@ Apparently the open loop eigenfrequency is not a frequency in which the
 bicycle-rider operates.
 \begin{figure}[tb]
     \centering
-        \includegraphics[width=\textwidth]{figures/steerangle.pdf}\\
+        \includegraphics[width=\textwidth]{steerangle.pdf}\\
     \caption{Steer angle amplitude plot for the nine different speeds for
     normal pedaling experiment. Solid vertical line indicates the pedaling
     frequency. Dashed vertical gray line indicates the bicycle-rigid rider
@@ -730,7 +731,7 @@ present in analysis. Furthermore, no bend, lean or twist motions with high
 variance were detected during the experiments.
 \begin{figure}[tb]
     \centering
-        \includegraphics[width=0.7\textwidth]{figures/towing3classes.pdf}\\
+        \includegraphics[width=0.7\textwidth]{towing3classes.pdf}\\
     \caption{The percent variance of each of the three classes:
     Steer-Yaw-Roll, Bounce and Knees, at the speeds at which the Drift
     and Other classes were removed from the results for trials without
@@ -759,7 +760,7 @@ not the case, once again indicating that the rigid body open loop weave
 eigenfrequency is not the frequency at which the bicycle is controlled.
 \begin{figure}[tbp]
     \centering
-        \includegraphics[width=\textwidth]{figures/steerangletowing.pdf}\\
+        \includegraphics[width=\textwidth]{steerangletowing.pdf}\\
     \caption{Steer angle amplitude plot for the nine different speeds for the
     tasks without pedaling. Dashed vertical grey line indicates the
     bicycle-rigid rider open loop weave eigenfrequency obtained from Fig.
