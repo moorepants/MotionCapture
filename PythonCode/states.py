@@ -56,7 +56,7 @@ for i, run in enumerate(runInfo['run']):
         p  = np.zeros((tSteps, 3)) # bicycle geometry
         rr = np.zeros((tSteps, 1)) # rear wheel radius
         rf = np.zeros((tSteps, 1)) # front wheel radius
-        HipVec = np.zeros((tSteps, 2, 3))
+        HipVec = np.zeros((tSteps, 3, 3))
 
         # set the proper constants depending on which bike was used
         if runInfo['bike'][i] == 'stratos':
@@ -157,20 +157,20 @@ for i, run in enumerate(runInfo['run']):
             r[39] = r[31] + r_m32_m40
             #print 'r[39] =', r[39]
 
-            # make vectors from the seat post to the hips
+            # make vectors from the seat post to the hips and butt
             r_m26_m4 = r[3] - r[25]
             r_m26_m8 = r[7] - r[25]
-            # project these into the bicycle yz plane
-            rHipVec = r_m26_m4 - np.dot(r_m26_m4, b[0])
-            lHipVec = r_m26_m8 - np.dot(r_m26_m8, b[0])
+            r_m26_m9 = r[8] - r[25]
             # express in the b frame
-            HipVec[j, 0] = np.array([np.dot(rHipVec, b[0]),
-                                    np.dot(rHipVec, b[1]),
-                                    np.dot(rHipVec, b[2])])
-            HipVec[j, 0] = np.array([np.dot(lHipVec, b[0]),
-                                    np.dot(lHipVec, b[1]),
-                                    np.dot(lHipVec, b[2])])
-
+            HipVec[j, 0] = np.array([np.dot(r_m26_m4, b[0]),
+                                    np.dot(r_m26_m4, b[1]),
+                                    np.dot(r_m26_m4, b[2])])
+            HipVec[j, 1] = np.array([np.dot(r_m26_m8, b[0]),
+                                    np.dot(r_m26_m8, b[1]),
+                                    np.dot(r_m26_m8, b[2])])
+            HipVec[j, 2] = np.array([np.dot(r_m26_m9, b[0]),
+                                     np.dot(r_m26_m9, b[1]),
+                                     np.dot(r_m26_m9, b[2])])
 
             # calculate the bicycle geometry
             #p[j, 0] = norm(np.cross(r_m33_m38, r[32] - r[35]))/norm(r_m33_m38)
