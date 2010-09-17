@@ -41,7 +41,7 @@ for num, name in enumerate(newMark):
     markLoc['num'].append(n)
 
 # set the run number to a single value for testing
-#runInfo['run'] = ['3017']
+runInfo['run'] = ['3104']
 
 for i, run in enumerate(runInfo['run']):
     if int(run) >= 1000:
@@ -56,6 +56,7 @@ for i, run in enumerate(runInfo['run']):
         p  = np.zeros((tSteps, 3)) # bicycle geometry
         rr = np.zeros((tSteps, 1)) # rear wheel radius
         rf = np.zeros((tSteps, 1)) # front wheel radius
+        HipVec = np.zeros((tSteps, 2, 3))
 
         # set the proper constants depending on which bike was used
         if runInfo['bike'][i] == 'stratos':
@@ -156,6 +157,13 @@ for i, run in enumerate(runInfo['run']):
             r[39] = r[31] + r_m32_m40
             #print 'r[39] =', r[39]
 
+            # make vectors from the seat post to the hips
+            r_m26_m4 = r[3] - r[25]
+            r_m26_m8 = r[7] - r[25]
+            # project these into the bicycle yz plane
+            HipVec[j, 0] = r_m26_m4 - np.dot(r_m26_m4, b[0])
+            HipVec[j, 1] = r_m26_m8 - np.dot(r_m26_m8, b[0])
+
             # calculate the bicycle geometry
             #p[j, 0] = norm(np.cross(r_m33_m38, r[32] - r[35]))/norm(r_m33_m38)
             #p[j, 1] = norm(np.cross(r_m33_m38, r[32] - r[31]))/norm(r_m33_m38)
@@ -203,6 +211,7 @@ for i, run in enumerate(runInfo['run']):
                 #print 'q[' + str(marker) + ', j] =', q[marker, j]
             #input = raw_input()
         np.save('../data/npy/states/' + run + 'q.npy', q)
+        np.save('../data/npy/hip/' + run + 'Hip.npy', HipVec)
         print 'Finished run', run
     else: pass
 '''
