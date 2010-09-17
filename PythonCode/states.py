@@ -41,7 +41,7 @@ for num, name in enumerate(newMark):
     markLoc['num'].append(n)
 
 # set the run number to a single value for testing
-runInfo['run'] = ['3104']
+#runInfo['run'] = ['3105']
 
 for i, run in enumerate(runInfo['run']):
     if int(run) >= 1000:
