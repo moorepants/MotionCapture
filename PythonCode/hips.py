@@ -2,9 +2,7 @@ from numpy import load
 from matplotlib.pyplot import plot, show, legend, title, figure, subplot, ylim, axis
 from mpl_toolkits.mplot3d import Axes3D
 
-HipVec = load('../data/npy/hip/3105Hip.npy')
-
-#inches2meters =   
+HipVec = load('../data/npy/hip/3080Hip.npy')
 
 figure(1)
 subplot(2, 1, 1)
