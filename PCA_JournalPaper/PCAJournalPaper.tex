@@ -137,7 +137,7 @@ with a motion capture system. The tasks were performed on a $3\times5$ meter
 treadmill Fig. (\ref{fig:treadmill}) capable of belt speeds up to 35 km/h. The
 treadmill was chosen because the envelope of space was suitable for the motion
 capture system and it eliminated any disturbances such as wind, rough ground,
-and obstacles.  We chose three male riders of similar age [31, 23, 26 years] and
+and obstacles.  We chose three male riders of similar age [31, 23, 26 years],
 build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72 kg)]. We also used two
 different Dutch bicycles: a 2008 Batavus
 Browser with a 3 speed hub and a 2008 Batavus Stratos Deluxe with a 7 speed
@@ -531,7 +531,7 @@ frequencies at any distinct spikes.
     \end{center}
     \caption{The frequency
     content of the first five principal components for normal pedaling at 10
-    km/h. The vertical line in represents the open loop weave frequency
+    km/h. The vertical black line represents the open loop weave frequency
     (0.28 Hz) determined from Fig. (\ref{fig:eigPlot}) at this forward speed.
     The pedaling frequency is about 0.8 Hz at this speed, see
     Fig.~(\ref{pedalsteerangle})}
@@ -637,24 +637,27 @@ identify which coefficients were connected. Finally, the correlated
 coefficients were viewed simultaneously in the GUI enabling the determination
 of the motion class.
 
-The correlated coefficients were used to form six different classes of motions,
-each made up of combinations of the previously described motions, with
-reference to Fig. (\ref{fig:motions}):\\
-\\
-\begin{tabular}[]{ll}
-    Class Name & Class Description\\
-    \hline
-    Drift & Drift\\
-    Pedaling & Pedaling (\ref{fig:pedaling}), Bend (\ref{fig:bend}), Lean
-        (\ref{fig:lean}), Twist (\ref{fig:twist})\\
-    Steer-Yaw-Roll & Steer and Roll (\ref{fig:steerRoll}), Yaw
-        (\ref{fig:yaw})\\
-    Bounce & Bounce (\ref{fig:bounce})\\
-    Knees & Knees (\ref{fig:knees})\\
-    Other & Head and components that showed noise of some
-    sort
-\end{tabular}\\
-\\
+The correlated coefficients were used to form six different classes of motions, Table~\ref{tab:MotionClasses},
+each made up of combinations of the previously described motions in
+Fig.~\ref{fig:motions}.
+\begin{table}[tbp]
+    \caption{The six primary motion classes.}
+    \label{tab:MotionClasses}
+    \centering
+    \begin{tabular}[]{ll}
+        Class Name & Class Description\\
+        \hline
+        Drift & Drift\\
+        Pedaling & Pedaling (\ref{fig:pedaling}), Bend (\ref{fig:bend}), Lean
+            (\ref{fig:lean}), Twist (\ref{fig:twist})\\
+        Steer-Yaw-Roll & Steer and Roll (\ref{fig:steerRoll}), Yaw
+            (\ref{fig:yaw})\\
+        Bounce & Bounce (\ref{fig:bounce})\\
+        Knees & Knees (\ref{fig:knees})\\
+        Other & Head and components that showed noise of some
+        sort
+    \end{tabular}
+\end{table}
 In most cases the correlated coefficients described a single class. However, in
 some cases this was not the case and the coefficients were used to describe
 more than one class. An example is that at low speed the components containing
@@ -742,7 +745,7 @@ variance were detected during the experiments.
 It is clear that at all speeds most motion takes place in the Steer-Yaw-Roll
 class. Also interesting is that unlike in the normal pedaling situation, the
 Knee motion percentage does not increase at low speeds. This may mean that the
-lateral knee motion is connected to pedaling is some way. Like for the pedaling
+lateral knee motion is connected to pedaling in some way. Like for the pedaling
 case, the Bounce and Knees classes may contain different principal components
 and a statistical approach to evaluate the percent variance of the classes
 would provide clearer results. Also note that as the bicycle becomes self
