@@ -63,7 +63,7 @@
 \begin{abstract}
 Recent observations of a bicyclist riding through town and on a treadmill show
 that the rider uses the upper body very little when performing normal maneuvers
-and that the bicyclist may in fact primarily use steering input for control.
+and that the bicyclist may, in fact, primarily use steering input for control.
 The observations also revealed that other motions such as lateral movement of the knees
 were used in low speed stabilization. In order to validate the hypothesis that
 there is little upper body motion during casual cycling, an in-depth motion
@@ -97,7 +97,7 @@ uncontrolled bicycle~\cite{Meijaard2007,Kooijman2008} and various control scheme
 explored for tracking purposes~\cite{Peterson2008a,Schwab2008,Sharp2008a}, but
 little is understood about how a bicyclist actually stabilizes a bicycle during
 normal riding. A bicycle and rider system is unique among vehicles in
-that the rider is from 80 to 90 percent of the total mass of the system, the
+that the rider is from 80 to 90\% of the total mass of the system, the
 system is laterally unstable, and the rider is flexibly coupled to the
 bicycle in such a way that many body motions can be used as control inputs.
 Previous research into realistic bicycle control has focused on both steering
@@ -105,7 +105,7 @@ and rider lean as control inputs, but there has been no experimental
 verification of which motions a rider actually uses for control. Recent
 observations of a bicyclist riding through town and on a
 treadmill~\cite{Kooijman2009a} show that the rider moves the upper body very
-little when performing normal maneuvers and that the bicyclist may in fact
+little when performing normal maneuvers and that the bicyclist may, in fact,
 primarily use steering input for control. This corresponds well with the fact
 that control by leaning requires high gains compared to the gains required for
 steering when employing an optimal control strategy on a
@@ -479,14 +479,14 @@ corresponding coefficients $a_{ij}$. The principal components represent linear
 trajectories of the markers and the coefficients show how the markers follow
 the trajectories with time. We began processing the data by reviewing each
 principal component of each trial in the GUI and noting what type of
-motion we saw Tab. (\ref{tab:trialDesc}). These descriptions were subjective
+motion we saw Table (\ref{tab:trialDesc}). These descriptions were subjective
 because we grouped marker movement based on our preconceived understanding of
 rider and bicycle motion. Some of the components displayed motions that were not
 physically possible such as the upper leg stretching in length during the knee
 bounce. This is possible when examining a single component but when
 superimposed over the rest of the components the unrealistic motions are not
 present. Furthermore, for each component we examined amplitude and frequency
-content of the associated coefficients $a_{ij}$ as shown in Figures
+content of the associated coefficients $a_{ij}$ as shown in Figs.
 (\ref{fig:coef3062}) and (\ref{fig:fft3062}) and noted the shape of the
 frequency spectrum and the
 frequencies at any distinct spikes.
@@ -506,8 +506,8 @@ frequencies at any distinct spikes.
             sway out of phase with pedaling & max amp = 0.27 m, large dominant spike at 0.8~Hz\\
         4  & 8.27  & horizontal pedaling, head/shoulder sway & large dominant spike at 0.8~Hz with 0.19 m amp\\
         5  & 0.82  & yaw, knees stay still & max amp = 0.04 m at 0.33~Hz, most freq below 1~Hz\\
-        6  & 0.27  & erratic left hand movement & max amp = 0.018 m, most freq below 2~Hz\\
-        7  & 0.21  & steer, left hand movement, slight roll & most freq below 2~Hz, spike at 0.33~Hz and 1.58~Hz\\
+        6  & 0.27  & erratic left-hand movement & max amp = 0.018 m, most freq below 2~Hz\\
+        7  & 0.21  & steer, left-hand movement, slight roll & most freq below 2~Hz, spike at 0.33~Hz and 1.58~Hz\\
         8  & 0.07  & knee and head bounce & dominant spike at 1.58~Hz\\
         9  & 0.04  & lateral knee movement, head jiggle & spikes at 1.58~Hz and 2.37~Hz, most freq below 2.5~Hz\\
         10 & 0.02  & head and knee jiggle & spikes at 1.58~Hz and 3.17~Hz, most freq below 3.5~Hz\\
@@ -542,7 +542,7 @@ some of the components are linked by the frequencies of the coefficients
 and describe an identifiable motion. The most obvious of these is that the vertical
 and horizontal pedaling components make up the circular pedaling motion.
 Both vary periodically and have a dominant frequency which is defined by the
-cadence. In the example trial, Tab. (\ref{tab:trialDesc}), the upper body
+cadence. In the example trial, Table (\ref{tab:trialDesc}), the upper body
 motions are also linked to the pedaling. Components 8 and 9 both correspond to
 a frequency that is twice the pedaling frequency, which may be due to the
 forces created during each pedal stroke. Component 6 seems to be the result of a
@@ -658,10 +658,10 @@ Fig.~\ref{fig:motions}.
         sort
     \end{tabular}
 \end{table}
-In most cases the correlated coefficients described a single class. However, in
-some cases this was not the case and the coefficients were used to describe
+In most cases, the correlated coefficients described a single class. However, in
+some cases, this was not the case and the coefficients were used to describe
 more than one class. An example is that at low speed the components containing
-the drift motions also contained large steer, yaw and roll motions. Therefore,
+the drift motions also contained large steer, yaw, and roll motions. Therefore,
 the motions were placed in both the Drift and the Steer-Yaw-Roll classes.
 
 Since the rider was not instructed to hold a specific location on the treadmill
@@ -680,11 +680,11 @@ configuration variable time histories and frequency content explicitly.
 Figure (\ref{jellybean}) shows how the relative percent variance of the four classes:
 Pedaling, Steer-Yaw-Roll, Bounce and Knees varies with speed for Rider 3 on the
 Batavus Browser bicycle. The percentage is the average of two runs at speeds 5 km/h and
-above. From the graph it
+above. From the graph, it
 is clear that at 10 km/h and higher speeds practically all the motion that is
 taking place is the pedaling motion class. Below 10 km/h, the Steer-Yaw-Roll
 class becomes increasingly active and the relative percentage of the motion
-taking place in the pedaling class drops. Also at speeds below 10 km/h the
+taking place in the pedaling class drops. Also, at speeds below 10 km/h the
 lateral knee motion (Knees) class percentage increases with decreasing speed.
 The increase is not as significant as that of the Steer-Yaw-Roll class
 (increase to roughly 5\% at 2 km/h), but it is certainly visible. The spike at
@@ -757,8 +757,8 @@ frequency-amplitude plot for different speeds. Compared to normal pedaling,
 the amplitudes are about half the size at the low speeds and one tenth the size
 at high speeds, indicating that smaller steering angles were made. The
 frequency content now also shows a much wider, flatter spectrum compared to
-normal pedaling. At 10 and 15 km/h the frequency with the largest amplitude is
-near the open loop weave eigenfrequency. However, at the other speeds this is
+normal pedaling. At 10 and 15 km/h, the frequency with the largest amplitude is
+near the open loop weave eigenfrequency. However, at the other speeds, this is
 not the case, once again indicating that the rigid body open loop weave
 eigenfrequency is not the frequency at which the bicycle is controlled.
 \begin{figure}[tbp]
@@ -877,7 +877,7 @@ any marker on the rider relative to $m_{36}$ can be expressed in the bicycle
 reference frame, $\mathbf{B}$, rather than the inertial frame, $\mathbf{N}$.
 This formulation was used in the
 PCA of the rider-only markers to look specifically at rider motion relative to
-the bicycle. The subscripts, $\mathbf{N}$ and $\mathbf{B}$, in Equation
+the bicycle. The subscripts, $\mathbf{N}$ and $\mathbf{B}$, in Eq.
 (\ref{eq:wrtRear}) signify which
 reference frame the position vectors are expressed in.
 \begin{equation}
@@ -934,7 +934,7 @@ Equation (\ref{eq:rr}) gives the instantaneous rear wheel radius.
     {\hat{\mathbf{b}}_3\cdot\hat{\mathbf{n}}_3}
 \label{eq:rr}
 \end{equation}
-Which is used to formulate the vector to the rear wheel contact point Eq.
+which is used to formulate the vector to the rear wheel contact point Eq.
 (\ref{eq:r39}).
 \begin{equation}
     \mathbf{r}^{{m_{39}}/{n_o}} = \mathbf{r}^{{m_{36}}/{n_o}}+r_\mathbf{R}\hat{\mathbf{b}_3}
