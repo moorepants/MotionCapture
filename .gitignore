@@ -6,7 +6,6 @@
 *.log
 *.ALL
 *.pdf
-*.fig
 *.mat
 *.dir
 *.png

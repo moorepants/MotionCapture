@@ -29,7 +29,7 @@ function varargout = PCAgui(varargin)
 
 % Edit the above text to modify the response to help PCAgui
 
-% Last Modified by GUIDE v2.5 24-Mar-2009 10:25:17
+% Last Modified by GUIDE v2.5 06-Jan-2011 20:49:36
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1830,6 +1830,3 @@ function close_pushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close(handles.figure1)
-
-
-
